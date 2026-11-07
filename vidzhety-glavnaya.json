@@ -1,0 +1,87 @@
+{
+ "_": "Прототип: demo, заявки никуда не уходят; Telegram и Макс – ссылки запросить у заказчика.",
+ "demo": true,
+ "consent": false,
+ "endpoint": "demo:",
+ "tz": 3,
+ "agreement": "/evolution-service-minsk-proto/privacy-policy/",
+ "widgets": [
+  {
+   "id": "svyaz",
+   "enabled": true,
+   "type": "contacts",
+   "title": "Связь",
+   "group": "contact",
+   "trigger": {
+    "on": "load"
+   },
+   "content": {
+    "layout": "side",
+    "phone": "+375291358888",
+    "phoneText": "+375 29 135-88-88",
+    "tg": "#",
+    "buttons": [
+     {
+      "text": "Записаться на диагностику",
+      "open": "zvonok",
+      "kind": "main"
+     },
+     {
+      "text": "Позвонить",
+      "href": "tel:+375291358888",
+      "kind": "alt"
+     }
+    ],
+    "callback": "zvonok"
+   }
+  },
+  {
+   "id": "zvonok",
+   "enabled": true,
+   "type": "callback",
+   "title": "Обратный звонок",
+   "trigger": {
+    "on": "click"
+   },
+   "content": {
+    "title": "Перезвоним и назовём цену",
+    "soon": "Мастер перезвонит в рабочее время.",
+    "later": "Мастер перезвонит в рабочее время.",
+    "done": "Заявка принята"
+   },
+   "form": {
+    "fields": [
+     "name",
+     "phone"
+    ],
+    "button": "Жду звонка"
+   }
+  },
+  {
+   "id": "uhod",
+   "enabled": true,
+   "type": "modal",
+   "title": "Окно на уходе: цена ТО вашей модели",
+   "group": "lead",
+   "trigger": {
+    "on": "exit"
+   },
+   "target": {
+    "device": "desktop"
+   },
+   "priority": 5,
+   "content": {
+    "title": "Назовём цену ТО вашей модели за 10 минут",
+    "text": "Оставьте телефон – мастер перезвонит, уточнит модель и пробег и назовёт цену до записи.",
+    "done": "Заявка принята",
+    "doneText": "Мастер перезвонит и назовёт цену."
+   },
+   "form": {
+    "fields": [
+     "phone"
+    ],
+    "button": "Узнать цену ТО"
+   }
+  }
+ ]
+}
