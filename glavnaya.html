@@ -161,7 +161,7 @@ header.w-block > .w-logic { margin: 8px auto; max-width: var(--wrap); }
 .w-card h3 { hyphens: auto; overflow-wrap: anywhere; }
 @media (min-width: 761px) { .w-hero > .w-media { min-height: 460px; } }
 @media (max-width: 760px) { .w-two { grid-template-columns: 1fr; } .w-header .w-descr { font-size: 11.5px; } .w-logo { font-size: 13px; padding: 4px 6px; } .w-card h3 { font-size: 16px; } }
-</style>
+.w-kicker{font-size:14px;line-height:1.3;font-weight:600;color:#5f5f5f;margin:0 0 6px;letter-spacing:0}.w-title{font-size:clamp(25px,3.2vw,34px);line-height:1.15;font-weight:700;margin:0 0 14px}</style>
 <!-- Виджеты страницы (окна, ярлычок, боковая панель мессенджеров, нижняя панель телефона) – модуль tema-mail/vidzhety.
      Набор под страницу – по справочнику ~/.claude/skills/marketolog/references/vidzhety-spravochnik.md. Чтобы включить – раскомментировать
      это и блок «Виджеты: подключение» в конце страницы, положить рядом vidzhety-<страница>.json. Образец – ~/Sites/sayty-agent/prototipy/gaz-mag/.
@@ -196,22 +196,22 @@ body.vz-has-sticky .w-sticky { display: none !important; }
 </header>
 
 <main>
-  <section class="w-block" data-n="1" data-name="Первый экран с WOW-сценой" data-question="Здесь занимаются моей машиной?" data-proof="живая сцена в боксе, рейтинг с карт" data-next="Моя марка и модель у вас есть?">
+  <section class="w-block" data-n="1" data-name="Первый экран с WOW-сценой" data-question="Здесь занимаются моей машиной?" data-proof="живая сцена в техцентре, рейтинг с карт" data-next="Моя марка и модель у вас есть?">
     <div class="w-wrap">
       <div class="w-hero">
         <div class="w-stack">
           <h1>Ремонт и сервис китайских электромобилей и гибридов в Минске</h1>
-          <p>Техническое обслуживание, диагностика, ремонт батарей, русификация и приложения. Цена до начала работ.</p>
+          <p>Техническое обслуживание, диагностика, ремонт батарей, русификация и приложения. Цену называем до начала работ.</p>
           <ul>
             <li><b>Дилерское оборудование</b> для диагностики</li>
             <li><b>Гарантия</b> на работы и прошивки, <span class="w-ask">[запросить: срок гарантии]</span></li>
-            <li><b>Минск</b> – пр-т Машерова, 15/4</li>
+            <li><b>Сами ездим на электромобилях</b> – знаем эти машины по своей ежедневной езде</li>
           </ul>
           <p class="w-trust">Рейтинг на картах: <span class="w-ask">[запросить: оценка, площадка, год, ссылка]</span></p>
           <div class="w-actions"><a class="w-btn" href="#zapis">Записаться на диагностику</a><a class="w-btn ghost" href="tel:+375291358888">+375 29 135-88-88</a></div>
           <p class="w-hint">Перезвоним, уточним машину и назовём цену.</p>
         </div>
-        <div class="w-media" data-alt="сервис китайских электромобилей и гибридов в Минске, электромобиль на подъёмнике в боксе">WOW-сцена: настоящий бокс заказчика, электромобиль на подъёмнике, мастер за работой, номер скрыт строго по рамке. Доказывает: это живой сервис таких машин. Что именно в сцене: <span class="w-ask">[запросить: сцена и съёмка у владельца]</span></div>
+        <div class="w-media" data-alt="сервис китайских электромобилей и гибридов в Минске, электромобиль на подъёмнике в техцентре">WOW-сцена: настоящий техцентр заказчика, электромобиль на подъёмнике, мастер за работой, номер скрыт строго по рамке. Доказывает: это живой сервис таких машин. Что именно в сцене: <span class="w-ask">[запросить: сцена и съёмка у владельца]</span></div>
       </div>
       <p class="w-note">WOW-сцена: сюжет и подачу решает дизайнер с владельцем, план задаёт лишь её наличие. Условие: оффер и кнопка видны сразу, сцена не отодвигает их на 390 и не грузит страницу до показа текста. Номер – ссылка tel, снизу на телефоне липкая панель.</p>
       <p class="w-note">Виджеты страницы: липкая панель на телефоне; боковая панель связи на компьютере (телефон, Telegram, Макс); обратный звонок по клику; ярлычок с подбором, когда будут цены по моделям. Окон по времени нет. Почему так: главная получает поиск и рекламу, перекрывать текст нельзя. Подключается при вёрстке модулем tema-mail/vidzhety.</p>
@@ -220,7 +220,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
 
   <section class="w-block" id="marki" data-n="2" data-name="Марки и модели" data-question="Моя марка и модель у вас есть?" data-proof="сетка марок и моделей со ссылками на лендинги" data-next="Что вы делаете с машиной?">
     <div class="w-wrap w-stack">
-      <h2>Ремонт и ТО по маркам и моделям</h2>
+      <h2 class="w-kicker">Ремонт и ТО по маркам и моделям</h2><p class="w-title">Найдите свою машину</p>
       <div class="w-grid" style="--cols:4;--cols-m:2">
         <article class="w-card"><h3><a href="#">Сервис Zeekr</a></h3><p><a href="#">Zeekr 001</a></p><p><a href="#">Zeekr X</a></p><p><a href="#">Zeekr 009</a></p></article>
         <article class="w-card"><h3><a href="#">Сервис Voyah</a></h3><p><a href="#">Voyah Free</a></p><p><a href="#">Voyah Dreamer</a></p></article>
@@ -237,7 +237,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
 
   <section class="w-block" id="uslugi" data-n="3" data-name="Основные услуги" data-question="Что вы делаете с машиной?" data-proof="5 основных услуг со ссылкой и ценой от" data-next="Как понять, что с машиной?">
     <div class="w-wrap w-stack">
-      <h2>Что делаем: ТО, диагностика, ремонт, батарея, русификация</h2>
+      <h2 class="w-kicker">ТО, диагностика, ремонт, батарея, русификация</h2><p class="w-title">С чем к нам приезжают</p>
       <div class="w-grid" style="--cols:5;--cols-m:2">
         <article class="w-card"><h3>ТО</h3><p>Техническое обслуживание (ТО) по регламенту производителя.</p><span class="w-price">от <span class="w-ask">[запросить: цена]</span></span><a href="#">Подробнее про ТО</a></article>
         <article class="w-card"><h3>Диагностика</h3><p>На дилерском оборудовании. Говорим, что срочно, а что может подождать.</p><span class="w-price">от <span class="w-ask">[запросить: цена]</span></span><a href="#">Подробнее про диагностику</a></article>
@@ -251,10 +251,10 @@ body.vz-has-sticky .w-sticky { display: none !important; }
 
   <section class="w-block" id="diagnostika" data-n="4" data-name="Диагностика" data-question="Как понять, что с машиной?" data-proof="дилерский сканер, что проверяем, фото экрана" data-next="Почему сюда, а не к дилеру или в обычный сервис?">
     <div class="w-wrap w-stack">
-      <h2>Диагностика электромобилей и гибридов: найдём причину до ремонта</h2>
+      <h2 class="w-kicker">Диагностика электромобилей и гибридов</h2><p class="w-title">Сначала найдём причину, потом чиним</p>
       <div class="w-two">
         <div class="w-stack">
-          <p>Смотрим ошибки, батарею, генератор, пневмоподвеску и говорим, что срочно, а что может подождать.</p>
+          <p>Проверяем ошибки, батарею и электронику, а потом говорим, что чинить сейчас, а что подождёт.</p>
           <p>Цена диагностики: от <span class="w-ask">[запросить: цена диагностики, BYN]</span>, время: <span class="w-ask">[запросить: сколько идёт диагностика]</span></p>
           <div class="w-media small" data-alt="экран дилерского сканера, диагностика китайского электромобиля в Минске">Фото экрана дилерского сканера с блоками машины, крупно и с подписью. Доказывает, что мы видим систему, а не гадаем</div>
           <div class="w-media small" data-alt="мастер проводит диагностику гибрида в сервисе">Мастер подключает сканер к машине клиента, лицо видно, номер скрыт строго по рамке</div>
@@ -279,7 +279,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
 
   <section class="w-block" data-n="5" data-name="Почему сюда" data-question="Почему сюда, а не к дилеру или в обычный сервис?" data-proof="преимущества с живого сайта с фото; подтверждение у заказчика – запросить" data-next="Вы уже работали с такими?">
     <div class="w-wrap w-stack">
-      <h2>Почему владельцы электромобилей и гибридов едут к нам</h2>
+      <h2>Почему владельцы электромобилей выбирают нас</h2>
       <div class="w-grid" style="--cols:3;--cols-m:2">
         <article class="w-card"><div class="w-media small" data-alt="мастер сервиса и его личный электромобиль">Мастер рядом со своим электромобилем: это его машина, он ездит на ней каждый день</div><h3>Сами владельцы электромобилей</h3><p>Консультируем из ежедневной езды.</p></article>
         <article class="w-card"><div class="w-media small" data-alt="мастер работает с высоковольтной системой питания электромобиля">Мастер работает с высоковольтной частью в средствах защиты; рядом допуск или сертификат крупно</div><h3>Каждый мастер знает высоковольтную систему питания</h3><p><span class="w-ask">[запросить: чем подтвердить: обучение, допуск]</span></p></article>
@@ -292,12 +292,12 @@ body.vz-has-sticky .w-sticky { display: none !important; }
     </div>
   </section>
 
-  <section class="w-block" id="raboty" data-n="6" data-name="Живые фото бокса и работ" data-question="Вы уже работали с такими?" data-proof="живые фото бокса, мастеров и работ; номера скрыты; лайтбокс" data-next="Что говорят владельцы?">
+  <section class="w-block" id="raboty" data-n="6" data-name="Живые фото техцентра и работ" data-question="Вы уже работали с такими?" data-proof="живые фото техцентра, мастеров и работ; номера скрыты; лайттехцентр" data-next="Что говорят владельцы?">
     <div class="w-wrap w-stack">
-      <h2>Наш бокс и работы: что уже делали</h2>
-      <p><span class="w-ask">[запросить: 8 живых фото: бокс, мастера, работы по разным маркам]</span></p>
+      <h2>Наш техцентр и работы</h2>
+      <p><span class="w-ask">[запросить: 8 живых фото: техцентр, мастера, работы по разным маркам]</span></p>
       <div class="w-grid" style="--cols:4;--cols-m:2">
-        <figure style="margin:0" class="w-stack"><div class="w-media small" data-alt="бокс сервиса китайских электромобилей в Минске">Общий вид бокса: подъёмники и машины, номера скрыты по рамке. Показывает масштаб сервиса</div><figcaption class="w-cap">Подпись: что на фото</figcaption></figure>
+        <figure style="margin:0" class="w-stack"><div class="w-media small" data-alt="техцентр сервиса китайских электромобилей в Минске">Общий вид техцентра: подъёмники и машины, номера скрыты по рамке. Показывает масштаб сервиса</div><figcaption class="w-cap">Подпись: что на фото</figcaption></figure>
         <figure style="margin:0" class="w-stack"><div class="w-media small" data-alt="мастера сервиса электромобилей Evolution Car Service">Мастера вместе у машины, лица видны: кому вы отдаёте ключи</div><figcaption class="w-cap">Подпись: что на фото</figcaption></figure>
         <figure style="margin:0" class="w-stack"><div class="w-media small" data-alt="вход в сервис, пр-т Машерова, 15/4, Минск">Въезд и вывеска с улицы: место настоящее, его легко найти</div><figcaption class="w-cap">Подпись: что на фото</figcaption></figure>
         <figure style="margin:0" class="w-stack"><div class="w-media small" data-alt="зона клиентов в сервисе электромобилей, Минск">Зона выдачи или ожидания: где клиент ждёт машину</div><figcaption class="w-cap">Подпись: что на фото</figcaption></figure>
@@ -306,7 +306,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
         <figure style="margin:0" class="w-stack"><div class="w-media small" data-alt="ремонт пневмоподвески китайского гибрида">Ремонт пневмоподвески: старая и новая деталь рядом</div><figcaption class="w-cap">Подпись: что на фото</figcaption></figure>
         <figure style="margin:0" class="w-stack"><div class="w-media small" data-alt="русификация китайского электромобиля в Минске">Экран на русском после работ: результат виден сразу</div><figcaption class="w-cap">Подпись: что на фото</figcaption></figure>
       </div>
-      <p class="w-note">Фото живые, бокс и мастера заказчика. Номера скрыты строго по контуру таблички. Клик открывает лайтбокс. Картинки в WebP, с ленивой загрузкой.</p>
+      <p class="w-note">Фото живые, техцентр и мастера заказчика. Номера скрыты строго по контуру таблички. Клик открывает лайттехцентр. Картинки в WebP, с ленивой загрузкой.</p>
     </div>
   </section>
 
@@ -317,11 +317,11 @@ body.vz-has-sticky .w-sticky { display: none !important; }
 
   <section class="w-block" data-n="7" data-name="Видеоотзывы" data-question="Что говорят владельцы?" data-proof="3 ролика владельцев, по клику" data-next="Это правда? Можно проверить?">
     <div class="w-wrap w-stack">
-      <h2>Владельцы рассказывают о сервисе на видео</h2>
+      <h2 class="w-kicker">Видеоотзывы клиентов</h2><p class="w-title">Клиенты о нашей работе</p>
       <p><span class="w-ask">[запросить: 3 видеоотзыва владельцев разных марок с их разрешением]</span></p>
       <div class="w-grid" style="--cols:3;--cols-m:1">
         <article class="w-card"><div class="w-media w-video" data-alt="видеоотзыв владельца электромобиля о ТО в Минске">Видео 1. Обложка: владелец у своего электромобиля, лицо видно, номер скрыт по рамке. О плановом ТО и цене</div><p class="w-cap">Имя, модель, пробег</p></article>
-        <article class="w-card"><div class="w-media w-video" data-alt="видеоотзыв владельца гибрида о диагностике в Минске">Видео 2. Обложка: владелец гибрида в боксе рядом с мастером. О диагностике: какую причину нашли</div><p class="w-cap">Имя, модель, пробег</p></article>
+        <article class="w-card"><div class="w-media w-video" data-alt="видеоотзыв владельца гибрида о диагностике в Минске">Видео 2. Обложка: владелец гибрида в техцентре рядом с мастером. О диагностике: какую причину нашли</div><p class="w-cap">Имя, модель, пробег</p></article>
         <article class="w-card"><div class="w-media w-video" data-alt="видеоотзыв о сервисе китайских электромобилей в Минске">Видео 3. Обложка: владелец за рулём. О выборе сервиса: почему приехал сюда</div><p class="w-cap">Имя, модель, пробег</p></article>
       </div>
       <p class="w-note">На странице – обложка и значок воспроизведения. Видео грузится по клику, автозвука нет.</p>
@@ -330,7 +330,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
 
   <section class="w-block" id="otzyvy" data-n="8" data-name="Текстовые отзывы и рейтинг" data-question="Это правда? Можно проверить?" data-proof="рейтинг, отзывы с датой, ссылка на карты" data-next="Как проходит визит?">
     <div class="w-wrap w-stack">
-      <h2>Что пишут о сервисе на картах</h2>
+      <h2>Отзывы наших клиентов</h2>
       <p class="w-trust">Оценка на картах: <span class="w-ask">[запросить: оценка, число отзывов, площадка, дата снятия]</span> · <a href="#">Все отзывы на картах</a> <span class="w-ask">[запросить: ссылка на карточку сервиса]</span></p>
       <div class="w-grid" style="--cols:3;--cols-m:1">
         <article class="w-card"><div class="w-media small" data-alt="отзыв о ремонте и ТО с карт">Снимок отзыва с карт крупно, с именем и датой: про ТО или ремонт</div><p><span class="w-ask">[запросить: дословный отзыв с карт: про ТО или ремонт]</span></p><p class="w-cap">Имя и дата: <span class="w-ask">[запросить: как в карточке на картах]</span></p></article>
@@ -342,7 +342,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
 
   <section class="w-block" data-n="9" data-name="Как проходит визит" data-question="Как проходит визит?" data-proof="шаги от записи до выдачи, цена до начала работ" data-next="Что ещё важно узнать?">
     <div class="w-wrap w-stack">
-      <h2>Как проходит визит в сервис: от записи до выдачи машины</h2>
+      <h2 class="w-kicker">Как проходит визит в сервис</h2><p class="w-title">От звонка до готовой машины за 4 шага</p>
       <ol class="w-steps" style="--cols:4">
         <li><b>Запись</b><span>Звоните или оставляете заявку. Перезваниваем, уточняем машину и называем цену.</span></li>
         <li><b>Приезд</b><span>Пр-т Машерова, 15/4, Минск.</span></li>
@@ -355,7 +355,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
 
   <section class="w-block" id="faq" data-n="10" data-name="FAQ" data-question="Что ещё важно узнать?" data-proof="вопросы с ответами" data-next="Как записаться и куда ехать?">
     <div class="w-wrap w-stack w-faq">
-      <h2>Что спрашивают владельцы перед ТО и ремонтом</h2>
+      <h2>Что спрашивают перед ТО и ремонтом</h2>
       <details open><summary>Когда я узнаю цену?</summary><p>До начала работ. Цена согласуется с вами, и работы начинаются после этого.</p></details>
       <details><summary>Какая гарантия на работы и запчасти?</summary><p>Гарантия действует на работы и прошивки. Срок и условия по запчастям: <span class="w-ask">[запросить: срок гарантии на работы и прошивки, условия по запчастям]</span></p></details>
       <details><summary>Откуда запчасти?</summary><p>Запчасти и расходники берём напрямую у поставщиков из Китая. Сроки: <span class="w-ask">[запросить: что есть в наличии, сроки поставки]</span></p></details>
@@ -369,7 +369,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
   <section class="w-block" id="zapis" data-n="11" data-name="Форма, адрес, карта" data-question="Как записаться и куда ехать?" data-proof="имя, телефон, галочка; адрес, карта, часы">
     <div class="w-wrap w-two">
       <form class="w-form" onsubmit="event.preventDefault()">
-  <h2>Запись на диагностику и адрес сервиса</h2>
+  <h2>Запишитесь на диагностику</h2>
   <label class="w-field">Имя<input id="zap-name" name="name" autocomplete="name"></label>
   <label class="w-field">Телефон<input id="zap-phone" name="phone" type="tel" inputmode="tel" placeholder="+375 (__) ___-__-__"></label>
   <label class="w-check"><input type="checkbox" id="zap-agree" data-agree> <span>Согласен на обработку <a href="#">персональных данных</a></span></label>
@@ -388,7 +388,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
   <p><b>Часы:</b> <span class="w-ask">[запросить: часы работы]</span></p>
   <p><b>Написать:</b> <a href="#">Telegram</a> · <a href="#">Макс</a> <span class="w-ask">[запросить: ссылки на Telegram и Макс]</span></p>
   <div class="w-media small" data-alt="Evolution Car Service на карте Минска, пр-т Машерова, 15/4">Карта с точкой на пр-те Машерова, 15/4 и кнопкой маршрута: человек сразу видит, куда ехать. Карта грузится по клику</div>
-  <div class="w-media small" data-alt="въезд в сервис китайских электромобилей и гибридов, Минск, пр-т Машерова, 15/4">Фото въезда в бокс с улицы, номера машин скрыты строго по рамке: человек узнает место, когда приедет</div>
+  <div class="w-media small" data-alt="въезд в сервис китайских электромобилей и гибридов, Минск, пр-т Машерова, 15/4">Фото въезда в техцентр с улицы, номера машин скрыты строго по рамке: человек узнает место, когда приедет</div>
 </div>
     </div>
   </section>

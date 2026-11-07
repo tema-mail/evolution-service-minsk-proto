@@ -161,7 +161,7 @@ header.w-block > .w-logic { margin: 8px auto; max-width: var(--wrap); }
 .w-card h3 { hyphens: auto; overflow-wrap: anywhere; }
 @media (min-width: 761px) { .w-hero > .w-media { min-height: 460px; } }
 @media (max-width: 760px) { .w-two { grid-template-columns: 1fr; } .w-header .w-descr { font-size: 11.5px; } .w-logo { font-size: 13px; padding: 4px 6px; } .w-card h3 { font-size: 16px; } }
-</style>
+.w-kicker{font-size:14px;line-height:1.3;font-weight:600;color:#5f5f5f;margin:0 0 6px;letter-spacing:0}.w-title{font-size:clamp(25px,3.2vw,34px);line-height:1.15;font-weight:700;margin:0 0 14px}</style>
 <!-- Виджеты страницы (окна, ярлычок, боковая панель мессенджеров, нижняя панель телефона) – модуль tema-mail/vidzhety.
      Набор под страницу – по справочнику ~/.claude/skills/marketolog/references/vidzhety-spravochnik.md. Чтобы включить – раскомментировать
      это и блок «Виджеты: подключение» в конце страницы, положить рядом vidzhety-<страница>.json. Образец – ~/Sites/sayty-agent/prototipy/gaz-mag/.
@@ -202,7 +202,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
         <div class="w-stack">
           <p class="w-crumbs"><a href="glavnaya.html">Главная</a> / <a href="#">Услуги</a> / <a href="#">Русификация</a> / <a href="#">Geely</a> / Monjaro</p>
           <h1>Русификация Geely Monjaro в Минске</h1>
-          <p>Русификация экранов Geely Monjaro с гарантией на работы и прошивки. Назовём цену до начала работ.</p>
+          <p>Переведём экраны Monjaro на русский и дадим гарантию на работы и прошивки. Цену называем до начала работ.</p>
           <table class="w-table">
             <tr><th>Цена</th><td>от <span class="w-ask">[запросить: цена, BYN]</span></td></tr>
             <tr><th>Время</th><td><span class="w-ask">[запросить: сколько идёт работа]</span></td></tr>
@@ -212,7 +212,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
           <div class="w-actions"><a class="w-btn" href="#zapis">Записаться на русификацию</a><a class="w-btn ghost" href="tel:+375291358888">+375 29 135-88-88</a></div>
           <p class="w-hint">Перезвоним, уточним машину и назовём цену.</p>
         </div>
-        <div class="w-media" data-alt="русификация Geely Monjaro, экран мультимедиа на русском">Живое фото: экран Geely Monjaro на русском, снят в машине у нас в боксе. Доказывает результат: человек сразу видит, что получит</div>
+        <div class="w-media" data-alt="русификация Geely Monjaro, экран мультимедиа на русском">Живое фото: экран Geely Monjaro на русском, снят в машине у нас в техцентре. Доказывает результат: человек сразу видит, что получит</div>
       </div>
       <p class="w-note">Паспорт – главная деталь страницы: цена, время, гарантия и экраны видны без прокрутки. Страница годится для контекста: номер – ссылка tel, на телефоне снизу липкая панель.</p>
       <p class="w-note">Виджеты страницы: липкая панель на телефоне; боковая панель связи на компьютере (телефон, Telegram, Макс); обратный звонок по клику. Окон по времени нет. Почему так: человек пришёл за одной услугой, ему нужна цена и связь в одно касание. Подключается при вёрстке модулем tema-mail/vidzhety.</p>
@@ -221,7 +221,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
 
   <section class="w-block" id="poluchaete" data-n="2" data-name="Что вы получаете" data-question="Что будет на русском и что сохранится?" data-proof="список функций, фото экранов" data-next="Как это проходит? Не сломаете машину?">
     <div class="w-wrap w-stack">
-      <h2>Что будет на русском в Geely Monjaro и что сохранится</h2>
+      <h2 class="w-kicker">Что входит в русификацию Geely Monjaro</h2><p class="w-title">Ваш Monjaro на русском: что изменится</p>
       <div class="w-two">
         <div class="w-stack"><h3>Будет на русском</h3><p><span class="w-ask">[запросить: список экранов и функций после русификации]</span></p></div>
         <div class="w-stack"><h3>Сохранится как было</h3><p><span class="w-ask">[запросить: какие настройки, функции и данные остаются]</span></p></div>
@@ -233,13 +233,13 @@ body.vz-has-sticky .w-sticky { display: none !important; }
         <div class="w-media small" data-alt="настройки Geely Monjaro на русском">Настройки машины на русском, с читаемыми пунктами: водитель сам управляет функциями</div>
         <div class="w-media small" data-alt="приложения на экране Geely Monjaro">Приложения на экране Monjaro, если входят в работу: что работает после неё</div>
       </div>
-      <p class="w-note">Каждый снимок сделан в настоящей машине, экран крупно, без рекламных макетов. Клик открывает лайтбокс. Если экран не переводится, карточку убрать: обещаем лишь то, что заказчик подтвердит.</p>
+      <p class="w-note">Каждый снимок сделан в настоящей машине, экран крупно, без рекламных макетов. Клик открывает лайттехцентр. Если экран не переводится, карточку убрать: обещаем лишь то, что заказчик подтвердит.</p>
     </div>
   </section>
 
   <section class="w-block" id="kak" data-n="3" data-name="Как проходит" data-question="Как это проходит? Не сломаете машину?" data-proof="этапы, сохранность" data-next="Вы так уже делали?">
     <div class="w-wrap w-stack">
-      <h2>Как проходит русификация Geely Monjaro и что с машиной</h2>
+      <h2 class="w-kicker">Как проходит русификация Geely Monjaro</h2><p class="w-title">От записи до русского меню</p>
       <ol class="w-steps" style="--cols:4">
         <li><b>Запись</b><span>Перезваниваем, уточняем машину и называем цену до начала работ.</span></li>
         <li><b>Приезжаете</b><span>Пр-т Машерова, 15/4, Минск.</span></li>
@@ -253,10 +253,10 @@ body.vz-has-sticky .w-sticky { display: none !important; }
 
   <section class="w-block" id="raboty" data-n="4" data-name="Живые фото и видео работы" data-question="Вы так уже делали?" data-proof="галерея и видео на этой модели" data-next="Что говорят клиенты?">
     <div class="w-wrap w-stack">
-      <h2>Русификация Geely Monjaro у нас: фото и видео работы</h2>
+      <h2 class="w-kicker">Фото и видео работ</h2><p class="w-title">Monjaro, которые мы уже русифицировали</p>
       <p><span class="w-ask">[запросить: фото и 2 видео русификации на Monjaro: дата, что делали]</span></p>
       <div class="w-grid" style="--cols:4;--cols-m:2">
-        <div class="w-media small" data-alt="Geely Monjaro в боксе сервиса, Минск">Monjaro в нашем боксе у мастера, номер скрыт строго по рамке: машина реально была у нас</div>
+        <div class="w-media small" data-alt="Geely Monjaro в техцентре, Минск">Monjaro в нашем техцентре у мастера, номер скрыт строго по рамке: машина реально была у нас</div>
         <div class="w-media small" data-alt="мастер выполняет русификацию Geely Monjaro">Мастер за работой с экраном и оборудованием: показывает процесс</div>
         <div class="w-media small" data-alt="экран Geely Monjaro до русификации">Экран до работы, на китайском: с чего начинали</div>
         <div class="w-media small" data-alt="экран Geely Monjaro после русификации">Тот же экран после работы, на русском: кадр в паре с предыдущим</div>
@@ -265,7 +265,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
         <article class="w-card"><div class="w-media w-video" data-alt="видео: экраны Geely Monjaro после русификации">Видео 1. Проход по экранам Monjaro на русском за минуту, снято на телефон в машине: человек видит результат своими глазами</div><p class="w-cap">Что показано, дата</p></article>
         <article class="w-card"><div class="w-media w-video" data-alt="видео: как проходит русификация Geely Monjaro">Видео 2. Мастер показывает, как проходит работа, лицо в кадре: снимает страх за машину</div><p class="w-cap">Что показано, дата</p></article>
       </div>
-      <p class="w-note">Фото живые, номера скрыты строго по контуру таблички, клик открывает лайтбокс. Видео грузится по клику: на странице обложка и значок воспроизведения.</p>
+      <p class="w-note">Фото живые, номера скрыты строго по контуру таблички, клик открывает лайттехцентр. Видео грузится по клику: на странице обложка и значок воспроизведения.</p>
     </div>
   </section>
 
@@ -275,7 +275,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
 
   <section class="w-block" id="otzyvy" data-n="5" data-name="Отзывы: видео и текст" data-question="Что говорят клиенты?" data-proof="отзывы по услуге" data-next="Почему у вас?">
     <div class="w-wrap w-stack">
-      <h2>Что говорят клиенты о русификации</h2>
+      <h2 class="w-kicker">Отзывы о русификации</h2><p class="w-title">Клиенты о нашей работе</p>
       <p class="w-trust">Оценка на картах: <span class="w-ask">[запросить: оценка, число отзывов, площадка, дата снятия, ссылка]</span></p>
       <div class="w-grid" style="--cols:2;--cols-m:1">
         <article class="w-card"><div class="w-media w-video" data-alt="видеоотзыв о русификации Geely Monjaro">Видеоотзыв 1. Обложка: владелец Monjaro в машине, показывает экран на русском. Что стало удобнее</div><p class="w-cap">Что показано, дата</p></article>
@@ -292,7 +292,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
 
   <section class="w-block" data-n="6" data-name="Почему сюда" data-question="Почему у вас?" data-proof="гарантия, обновления, оборудование; подтверждение у заказчика – запросить" data-next="Что ещё важно?">
     <div class="w-wrap w-stack">
-      <h2>Почему русификацию Geely Monjaro делают у нас</h2>
+      <h2>Почему русификацию Monjaro делают у нас</h2>
       <div class="w-grid" style="--cols:3;--cols-m:1">
         <article class="w-card"><div class="w-media small" data-alt="гарантия на русификацию Geely Monjaro">Гарантийный документ крупным фрагментом с подписью: гарантия не на словах</div><h3>Гарантия на работы и прошивки</h3><p>Срок: <span class="w-ask">[запросить: срок гарантии]</span></p></article>
         <article class="w-card"><div class="w-media small" data-alt="обновление Geely Monjaro после русификации">Экран обновления на Monjaro и русский интерфейс после него: обновление не отменяет работу</div><h3>Обновления</h3><p><span class="w-ask">[запросить: что происходит с русификацией при обновлении и как вы это ведёте]</span></p></article>
@@ -303,7 +303,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
 
   <section class="w-block" id="faq" data-n="7" data-name="FAQ" data-question="Что ещё важно?" data-proof="ответы" data-next="Как записаться?">
     <div class="w-wrap w-stack w-faq">
-      <h2>Что спрашивают перед русификацией Geely Monjaro</h2>
+      <h2>Что спрашивают перед русификацией</h2>
       <details open><summary>Сколько стоит русификация Geely Monjaro?</summary><p>От <span class="w-ask">[запросить: цена, BYN]</span>. Назовём цену до начала работ.</p></details>
       <details><summary>Сколько времени занимает?</summary><p><span class="w-ask">[запросить: сколько идёт работа]</span></p></details>
       <details><summary>Какие экраны будут на русском?</summary><p><span class="w-ask">[запросить: какие переводите на гибридном Monjaro]</span></p></details>
@@ -317,7 +317,7 @@ body.vz-has-sticky .w-sticky { display: none !important; }
   <section class="w-block" id="zapis" data-n="8" data-name="Форма" data-question="Как записаться?" data-proof="телефон, адрес" data-next="Что ещё можно сделать?">
     <div class="w-wrap w-two">
       <form class="w-form" onsubmit="event.preventDefault()">
-  <h2>Запись на русификацию Geely Monjaro и адрес сервиса</h2>
+  <h2>Запишите Monjaro на русификацию</h2>
   <label class="w-field">Имя<input id="zap-name" name="name" autocomplete="name"></label>
   <label class="w-field">Телефон<input id="zap-phone" name="phone" type="tel" inputmode="tel" placeholder="+375 (__) ___-__-__"></label>
   <label class="w-check"><input type="checkbox" id="zap-agree" data-agree> <span>Согласен на обработку <a href="#">персональных данных</a></span></label>
@@ -336,14 +336,14 @@ body.vz-has-sticky .w-sticky { display: none !important; }
   <p><b>Часы:</b> <span class="w-ask">[запросить: часы работы]</span></p>
   <p><b>Написать:</b> <a href="#">Telegram</a> · <a href="#">Макс</a> <span class="w-ask">[запросить: ссылки на Telegram и Макс]</span></p>
   <div class="w-media small" data-alt="Evolution Car Service на карте Минска, пр-т Машерова, 15/4">Карта с точкой на пр-те Машерова, 15/4 и кнопкой маршрута: человек сразу видит, куда ехать. Карта грузится по клику</div>
-  <div class="w-media small" data-alt="въезд в сервис китайских электромобилей и гибридов, Минск, пр-т Машерова, 15/4">Фото въезда в бокс с улицы, номера машин скрыты строго по рамке: человек узнает место, когда приедет</div>
+  <div class="w-media small" data-alt="въезд в сервис китайских электромобилей и гибридов, Минск, пр-т Машерова, 15/4">Фото въезда в техцентр с улицы, номера машин скрыты строго по рамке: человек узнает место, когда приедет</div>
 </div>
     </div>
   </section>
 
   <section class="w-block" data-n="9" data-name="Другие модели и услуги" data-question="Что ещё можно сделать?" data-proof="та же услуга на других моделях, другие услуги на этой модели">
     <div class="w-wrap w-stack">
-      <h2>Другие услуги на Geely Monjaro и русификация других моделей</h2>
+      <h2 class="w-kicker">Другие услуги на Geely Monjaro и русификация других моделей</h2><p class="w-title">Что ещё сделать на Monjaro</p>
       <h3>На этой модели</h3>
       <div class="w-links"><a href="#">ТО Geely Monjaro</a><a href="#">Диагностика Geely Monjaro</a><a href="#">Ремонт и ТО Geely Monjaro: всё о модели</a></div>
       <h3>Та же услуга на других моделях</h3>
