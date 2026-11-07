@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Прототип – Русификация Geely Monjaro</title>
+<!-- kit.css вставляется целиком внутрь <style> (прототип – один файл, открывается без интернета) -->
+<style>/* Комплект чёрно-белого прототипа: смысл, текст, порядок и действие. Визуал – дизайнер после «да» владельца. */
+:root {
+  --ink: #141414; --muted: #5f5f5f; --line: #b9b9b9; --fill: #ececec; --fill2: #f6f6f6; --paper: #ffffff;
+  --note: #fff6c8; --note-line: #c9b44a; --ask: #7a1f1f;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, Menlo, Consolas, monospace;
+  --wrap: 1180px;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.55 var(--font); }
+img { max-width: 100%; }
+a { color: var(--ink); }
+h1, h2, h3 { margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(28px, 4.2vw, 46px); }
+h2 { font-size: clamp(22px, 3vw, 32px); }
+h3 { font-size: 18px; }
+p { margin: 0; }
+.w-wrap { max-width: var(--wrap); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.w-stack { display: grid; gap: 14px; }
+.w-muted { color: var(--muted); }
+
+/* Панель прототипа: переключатели «Логика» и «Комментарии» */
+.w-bar { position: sticky; top: 0; z-index: 50; background: var(--ink); color: #fff; font: 13px/1.3 var(--mono); }
+.w-bar .w-wrap { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; padding-block: 8px; }
+.w-bar b { font-weight: 600; }
+.w-bar label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+
+/* Блок и его подпись логики */
+.w-block { border-top: 1px dashed var(--line); padding-block: 40px; position: relative; }
+.w-logic { display: none; font: 12.5px/1.45 var(--mono); background: var(--fill2); border: 1px solid var(--line); padding: 8px 10px; margin-bottom: 18px; }
+body.show-logic .w-logic { display: block; }
+.w-logic b { font-weight: 700; }
+.w-note { display: none; background: var(--note); border: 1px dashed var(--note-line); padding: 8px 10px; font-size: 13.5px; margin-top: 12px; }
+body.show-notes .w-note { display: block; }
+.w-note::before { content: "Дизайнеру: "; font-weight: 700; }
+.w-seo { display: none; font: 13px/1.5 var(--mono); background: #eef3ff; border: 1px solid #8aa0d6; padding: 12px 14px; margin: 12px auto; max-width: var(--wrap); }
+body.show-seo .w-seo { display: block; }
+.w-seo table { border-collapse: collapse; width: 100%; }
+.w-seo td { border-top: 1px solid #c9d4ee; padding: 4px 6px; vertical-align: top; }
+.w-seo td:first-child { white-space: nowrap; font-weight: 700; width: 1%; }
+.w-seo .bad { color: var(--ask); font-weight: 700; }
+.w-seo ul { margin: 0; padding-left: 18px; }
+.w-ask { color: var(--ask); font-weight: 600; background: #f7e9e9; padding: 0 4px; }
+
+/* Место под фото/видео/схему: роль, а не «картинка» */
+.w-media { background: repeating-linear-gradient(45deg, var(--fill), var(--fill) 10px, var(--fill2) 10px, var(--fill2) 20px);
+  border: 1px solid var(--line); min-height: 220px; display: grid; place-items: center; text-align: center; padding: 16px;
+  color: var(--muted); font-size: 14px; }
+.w-media::before { content: "▣ "; }
+.w-media.small { min-height: 120px; }
+
+/* Кнопки */
+.w-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; border: 2px solid var(--ink);
+  background: var(--ink); color: #fff; font-weight: 600; text-decoration: none; border-radius: 6px; cursor: pointer; font-size: 16px; }
+.w-btn.ghost { background: transparent; color: var(--ink); }
+.w-btn[disabled] { opacity: .45; cursor: not-allowed; }
+.w-hint { font-size: 13px; color: var(--muted); }
+
+/* Шапка */
+.w-header .w-wrap { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; justify-content: space-between; padding-block: 12px; }
+.w-logo { border: 2px solid var(--ink); padding: 6px 10px; font-weight: 700; }
+.w-descr { font-size: 13.5px; color: var(--muted); max-width: 34ch; }
+.w-contacts-top { display: grid; gap: 2px; font-size: 14px; text-align: right; }
+.w-nav { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14.5px; border-top: 1px solid var(--line); padding-block: 8px; }
+
+/* Первый экран */
+.w-hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 32px; align-items: center; }
+.w-hero ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.w-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+/* Сетки и карточки */
+.w-grid { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 14px; }
+.w-card { border: 1px solid var(--line); padding: 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.w-card .w-media { min-height: 140px; }
+.w-price { font-weight: 700; }
+
+/* Этапы */
+.w-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); gap: 14px; counter-reset: st; }
+.w-steps li { border: 1px solid var(--line); padding: 14px; counter-increment: st; display: grid; gap: 6px; }
+.w-steps li::before { content: counter(st); font-weight: 700; font-size: 22px; }
+
+/* Таблица */
+.w-table-wrap { overflow-x: auto; }
+.w-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.w-table th, .w-table td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+.w-table th { background: var(--fill2); }
+
+/* FAQ */
+.w-faq details { border: 1px solid var(--line); padding: 12px 14px; }
+.w-faq details + details { border-top: 0; }
+.w-faq summary { font-weight: 600; cursor: pointer; }
+
+/* Форма */
+.w-form { border: 2px solid var(--ink); padding: 18px; display: grid; gap: 12px; max-width: 520px; }
+.w-field { display: grid; gap: 4px; font-size: 14px; }
+.w-field input, .w-field select { min-height: 44px; border: 1px solid var(--ink); padding: 0 10px; font: inherit; background: #fff; }
+.w-check { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; }
+
+/* Полоса призыва */
+.w-cta { background: var(--fill); padding: 24px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+/* Плашка призыва между блоками: section.w-block.w-cta-strip с одной строкой предложения и кнопкой или мини-формой (карточка prizyv-mezhdu-blokami) */
+.w-block.w-cta-strip { padding-block: 16px; }
+.w-cta-strip .w-cta { padding: 14px 18px; }
+.w-cta-strip .w-cta p { margin: 0; font-weight: 600; }
+
+/* Состояние формы после отправки (карточка stranica-spasibo-sleduyushchiy-shag): видно по переключателю «После отправки» */
+.w-success { display: none; border: 2px dashed var(--ink); padding: 14px; background: var(--fill); }
+.w-success p { margin: 0 0 6px; }
+body.show-success .w-success { display: block; }
+
+/* Подвал */
+.w-footer { background: var(--fill2); border-top: 1px solid var(--line); padding-block: 28px; font-size: 14px; }
+
+/* Липкая панель действий на телефоне */
+.w-sticky { display: none; }
+header.w-block { padding-block: 0; border-top: 0; }
+header.w-block > .w-logic { margin: 8px auto; max-width: var(--wrap); }
+
+@media (max-width: 760px) {
+  .w-hide-m { display: none !important; }
+  /* Мобильная шапка: логотип, короткий дескриптор и «Меню»; звонок и мессенджеры – в липкой панели снизу */
+  .w-header .w-wrap { flex-wrap: nowrap; padding-block: 8px; gap: 10px; }
+  .w-header .w-contacts-top, .w-header .w-wrap > .w-btn, .w-nav { display: none !important; }
+  .w-header .w-descr { font-size: 12px; line-height: 1.3; }
+  .w-header > div.w-wrap:has(> .w-logo)::after { content: "☰ Меню"; margin-left: auto; border: 1px solid var(--ink); padding: 6px 10px; font-size: 13px; white-space: nowrap; }
+  .w-hero .w-media, .w-block[data-n="1"] .w-media:first-of-type { min-height: 160px; }
+  .w-bar .w-wrap { padding-block: 4px; gap: 4px 10px; font-size: 11px; }
+  .w-hero { grid-template-columns: 1fr; }
+  .w-grid { grid-template-columns: repeat(var(--cols-m, 2), minmax(0, 1fr)); }
+  .w-steps { grid-template-columns: 1fr; }
+  .w-contacts-top { text-align: left; }
+  .w-block { padding-block: 28px; }
+  .w-sticky { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    padding: 8px max(12px, env(safe-area-inset-right, 0px)) calc(8px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+    background: #fff; border-top: 1px solid var(--line); }
+  body { padding-bottom: 72px; }
+}
+@media (max-width: 420px) { .w-grid.one-m { grid-template-columns: 1fr; } }
+
+/* Дополнения к комплекту для этих трёх страниц: раскладка, без цвета */
+.w-two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.w-crumbs { font-size: 13px; color: var(--muted); }
+.w-trust { border: 1px solid var(--line); padding: 6px 10px; font-size: 14px; }
+.w-lead { max-width: 76ch; }
+.w-video::before { content: "▶ "; font-size: 22px; }
+.w-cap { font-size: 13.5px; color: var(--muted); }
+.w-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.w-links a { border: 1px solid var(--line); padding: 8px 12px; min-height: 44px; display: inline-flex; align-items: center; }
+.w-sub { font-weight: 600; }
+.w-sticky .w-btn { padding: 0 8px; font-size: 15px; line-height: 1.15; text-align: center; }
+.w-logo { white-space: nowrap; }
+.w-card h3 { hyphens: auto; overflow-wrap: anywhere; }
+@media (min-width: 761px) { .w-hero > .w-media { min-height: 460px; } }
+@media (max-width: 760px) { .w-two { grid-template-columns: 1fr; } .w-header .w-descr { font-size: 11.5px; } .w-logo { font-size: 13px; padding: 4px 6px; } .w-card h3 { font-size: 16px; } }
+</style>
+<!-- Виджеты страницы (окна, ярлычок, боковая панель мессенджеров, нижняя панель телефона) – модуль tema-mail/vidzhety.
+     Набор под страницу – по справочнику ~/.claude/skills/marketolog/references/vidzhety-spravochnik.md. Чтобы включить – раскомментировать
+     это и блок «Виджеты: подключение» в конце страницы, положить рядом vidzhety-<страница>.json. Образец – ~/Sites/sayty-agent/prototipy/gaz-mag/.
+<link rel="stylesheet" href="https://tema-mail.github.io/vidzhety/vidzhety.css">
+<style>
+:root { --w-accent: #141414; --w-accent-2: #5f5f5f; --w-radius: 6px; --w-wa: #3d3d3d; --w-tg: #3d3d3d; --w-max: #3d3d3d; }
+body.vz-has-sticky .w-sticky { display: none !important; }
+</style>
+-->
+</head>
+<body>
+<div class="w-bar"><div class="w-wrap">
+  <b>Прототип · Evolution Car Service · Услуга: русификация Geely Monjaro · версия 08.11.2026</b>
+  <label><input type="checkbox" id="t-logic"> Логика блоков</label>
+  <label><input type="checkbox" id="t-notes"> Комментарии дизайнеру</label>
+  <label><input type="checkbox" id="t-seo"> SEO страницы</label>
+  <label><input type="checkbox" id="t-success"> После отправки</label>
+  <span>Меток «запросить»: <b id="ask-count">0</b></span>
+</div></div>
+
+<script type="application/json" id="w-seo">{"title":"Русификация Geely Monjaro в Минске: цена, сроки, гарантия","description":"Русификация Geely Monjaro в Минске: цена, время работы и гарантия на работы и прошивки. Назовём цену до начала работ. Пр-т Машерова, 15/4.","h1":"Русификация Geely Monjaro в Минске","zapros":"русификация Geely Monjaro Минск","schema":"AutoRepair (адрес, телефон), Service с ценой, когда она будет подтверждена, BreadcrumbList, FAQPage; Review и VideoObject, когда появятся настоящие отзывы и видео. Адрес страницы: /services/russification/geely/monjaro","links":["/services/russification – хаб услуги","/services/russification/geely – услуга и марка","/brands/geely/monjaro – лендинг модели","/services/maintenance/geely/monjaro – ТО этой модели","/services/diagnostics/geely/monjaro – диагностика этой модели","/services/russification/lixiang/l9 – та же услуга на другой модели"]}</script>
+<div class="w-seo" id="w-seo-box"></div>
+
+<header class="w-header w-block" data-n="0" data-name="Шапка" data-question="Где вы и как с вами связаться?" data-proof="адрес, телефон, часы, Telegram и Макс">
+  <div class="w-wrap">
+    <span class="w-logo">Evolution Car Service</span>
+    <span class="w-descr">Ремонт и ТО китайских электромобилей и гибридов в Минске</span>
+    <span class="w-contacts-top"><a href="tel:+375291358888">+375 29 135-88-88</a><span class="w-muted">пр-т Машерова, 15/4, Минск</span><span class="w-muted">Часы: <span class="w-ask">[запросить: часы работы]</span></span><span><a href="#">Telegram</a> · <a href="#">Макс</a></span></span>
+    <a class="w-btn ghost" href="#zapis">Записаться на русификацию</a>
+  </div>
+  <nav class="w-wrap w-nav"><a href="#poluchaete">Что будет на русском</a><a href="#kak">Как проходит</a><a href="#raboty">Фото и видео</a><a href="#otzyvy">Отзывы</a><a href="#faq">Вопросы</a><a href="#zapis">Запись и адрес</a></nav>
+</header>
+
+<main>
+  <section class="w-block" data-n="1" data-name="Первый экран и паспорт услуги" data-question="Что получу, за сколько, как быстро?" data-proof="цена от, время, гарантия, что переводим" data-next="Что будет на русском и что сохранится?">
+    <div class="w-wrap">
+      <div class="w-hero">
+        <div class="w-stack">
+          <p class="w-crumbs"><a href="glavnaya.html">Главная</a> / <a href="#">Услуги</a> / <a href="#">Русификация</a> / <a href="#">Geely</a> / Monjaro</p>
+          <h1>Русификация Geely Monjaro в Минске</h1>
+          <p>Русификация экранов Geely Monjaro с гарантией на работы и прошивки. Назовём цену до начала работ.</p>
+          <table class="w-table">
+            <tr><th>Цена</th><td>от <span class="w-ask">[запросить: цена, BYN]</span></td></tr>
+            <tr><th>Время</th><td><span class="w-ask">[запросить: сколько идёт работа]</span></td></tr>
+            <tr><th>Гарантия</th><td><span class="w-ask">[запросить: срок гарантии]</span></td></tr>
+            <tr><th>Экраны</th><td><span class="w-ask">[запросить: какие переводите на гибридном Monjaro]</span></td></tr>
+          </table>
+          <div class="w-actions"><a class="w-btn" href="#zapis">Записаться на русификацию</a><a class="w-btn ghost" href="tel:+375291358888">+375 29 135-88-88</a></div>
+          <p class="w-hint">Перезвоним, уточним машину и назовём цену.</p>
+        </div>
+        <div class="w-media" data-alt="русификация Geely Monjaro, экран мультимедиа на русском">Живое фото: экран Geely Monjaro на русском, снят в машине у нас в боксе. Доказывает результат: человек сразу видит, что получит</div>
+      </div>
+      <p class="w-note">Паспорт – главная деталь страницы: цена, время, гарантия и экраны видны без прокрутки. Страница годится для контекста: номер – ссылка tel, на телефоне снизу липкая панель.</p>
+      <p class="w-note">Виджеты страницы: липкая панель на телефоне; боковая панель связи на компьютере (телефон, Telegram, Макс); обратный звонок по клику. Окон по времени нет. Почему так: человек пришёл за одной услугой, ему нужна цена и связь в одно касание. Подключается при вёрстке модулем tema-mail/vidzhety.</p>
+    </div>
+  </section>
+
+  <section class="w-block" id="poluchaete" data-n="2" data-name="Что вы получаете" data-question="Что будет на русском и что сохранится?" data-proof="список функций, фото экранов" data-next="Как это проходит? Не сломаете машину?">
+    <div class="w-wrap w-stack">
+      <h2>Что будет на русском в Geely Monjaro и что сохранится</h2>
+      <div class="w-two">
+        <div class="w-stack"><h3>Будет на русском</h3><p><span class="w-ask">[запросить: список экранов и функций после русификации]</span></p></div>
+        <div class="w-stack"><h3>Сохранится как было</h3><p><span class="w-ask">[запросить: какие настройки, функции и данные остаются]</span></p></div>
+      </div>
+      <p><span class="w-ask">[запросить: фото экранов Monjaro после работы, снятые в машине]</span></p>
+      <div class="w-grid" style="--cols:4;--cols-m:2">
+        <div class="w-media small" data-alt="главное меню Geely Monjaro на русском">Главное меню экрана Monjaro на русском: первое, что видит водитель</div>
+        <div class="w-media small" data-alt="приборная панель Geely Monjaro на русском">Приборная панель на русском, если она переводится: показывает полноту работы</div>
+        <div class="w-media small" data-alt="настройки Geely Monjaro на русском">Настройки машины на русском, с читаемыми пунктами: водитель сам управляет функциями</div>
+        <div class="w-media small" data-alt="приложения на экране Geely Monjaro">Приложения на экране Monjaro, если входят в работу: что работает после неё</div>
+      </div>
+      <p class="w-note">Каждый снимок сделан в настоящей машине, экран крупно, без рекламных макетов. Клик открывает лайтбокс. Если экран не переводится, карточку убрать: обещаем лишь то, что заказчик подтвердит.</p>
+    </div>
+  </section>
+
+  <section class="w-block" id="kak" data-n="3" data-name="Как проходит" data-question="Как это проходит? Не сломаете машину?" data-proof="этапы, сохранность" data-next="Вы так уже делали?">
+    <div class="w-wrap w-stack">
+      <h2>Как проходит русификация Geely Monjaro и что с машиной</h2>
+      <ol class="w-steps" style="--cols:4">
+        <li><b>Запись</b><span>Перезваниваем, уточняем машину и называем цену до начала работ.</span></li>
+        <li><b>Приезжаете</b><span>Пр-т Машерова, 15/4, Минск.</span></li>
+        <li><b>Работа</b><span><span class="w-ask">[запросить: этапы русификации Monjaro по порядку]</span></span></li>
+        <li><b>Выдача</b><span>Отдаём машину с экранами на русском. Гарантия на работы и прошивки.</span></li>
+      </ol>
+      <p><b>Сохранность машины:</b> <span class="w-ask">[запросить: как бережёте машину и данные, что с откатом, если что-то пойдёт не так]</span></p>
+      <p class="w-note">Шаг 3 и строка о сохранности снимают главный страх страницы. Текст – лишь со слов мастера, без них блок не закрыт.</p>
+    </div>
+  </section>
+
+  <section class="w-block" id="raboty" data-n="4" data-name="Живые фото и видео работы" data-question="Вы так уже делали?" data-proof="галерея и видео на этой модели" data-next="Что говорят клиенты?">
+    <div class="w-wrap w-stack">
+      <h2>Русификация Geely Monjaro у нас: фото и видео работы</h2>
+      <p><span class="w-ask">[запросить: фото и 2 видео русификации на Monjaro: дата, что делали]</span></p>
+      <div class="w-grid" style="--cols:4;--cols-m:2">
+        <div class="w-media small" data-alt="Geely Monjaro в боксе сервиса, Минск">Monjaro в нашем боксе у мастера, номер скрыт строго по рамке: машина реально была у нас</div>
+        <div class="w-media small" data-alt="мастер выполняет русификацию Geely Monjaro">Мастер за работой с экраном и оборудованием: показывает процесс</div>
+        <div class="w-media small" data-alt="экран Geely Monjaro до русификации">Экран до работы, на китайском: с чего начинали</div>
+        <div class="w-media small" data-alt="экран Geely Monjaro после русификации">Тот же экран после работы, на русском: кадр в паре с предыдущим</div>
+      </div>
+      <div class="w-grid" style="--cols:2;--cols-m:1">
+        <article class="w-card"><div class="w-media w-video" data-alt="видео: экраны Geely Monjaro после русификации">Видео 1. Проход по экранам Monjaro на русском за минуту, снято на телефон в машине: человек видит результат своими глазами</div><p class="w-cap">Что показано, дата</p></article>
+        <article class="w-card"><div class="w-media w-video" data-alt="видео: как проходит русификация Geely Monjaro">Видео 2. Мастер показывает, как проходит работа, лицо в кадре: снимает страх за машину</div><p class="w-cap">Что показано, дата</p></article>
+      </div>
+      <p class="w-note">Фото живые, номера скрыты строго по контуру таблички, клик открывает лайтбокс. Видео грузится по клику: на странице обложка и значок воспроизведения.</p>
+    </div>
+  </section>
+
+  <section class="w-block w-cta-strip" data-n="4а" data-name="Плашка после работ" data-question="Хочу так же – что сделать?" data-proof="фото и видео из блока выше">
+    <div class="w-wrap"><div class="w-cta"><p>Хотите так же на своём Monjaro? Перезвоним, уточним машину и назовём цену.</p><a class="w-btn" href="#zapis">Узнать цену на мой Monjaro</a></div></div>
+  </section>
+
+  <section class="w-block" id="otzyvy" data-n="5" data-name="Отзывы: видео и текст" data-question="Что говорят клиенты?" data-proof="отзывы по услуге" data-next="Почему у вас?">
+    <div class="w-wrap w-stack">
+      <h2>Что говорят клиенты о русификации</h2>
+      <p class="w-trust">Оценка на картах: <span class="w-ask">[запросить: оценка, число отзывов, площадка, дата снятия, ссылка]</span></p>
+      <div class="w-grid" style="--cols:2;--cols-m:1">
+        <article class="w-card"><div class="w-media w-video" data-alt="видеоотзыв о русификации Geely Monjaro">Видеоотзыв 1. Обложка: владелец Monjaro в машине, показывает экран на русском. Что стало удобнее</div><p class="w-cap">Что показано, дата</p></article>
+        <article class="w-card"><div class="w-media w-video" data-alt="видеоотзыв о русификации в Минске">Видеоотзыв 2. Обложка: владелец другой модели после русификации. Как прошла работа и что с машиной</div><p class="w-cap">Что показано, дата</p></article>
+      </div>
+      <div class="w-grid" style="--cols:3;--cols-m:1">
+        <article class="w-card"><div class="w-media small" data-alt="отзыв о русификации с карт: результат">Снимок отзыва с карт: про результат на экране</div><p><span class="w-ask">[запросить: дословный отзыв о русификации, имя и дата]</span></p></article>
+        <article class="w-card"><div class="w-media small" data-alt="отзыв о русификации с карт: цена и время">Снимок отзыва с карт: про цену и время работы</div><p><span class="w-ask">[запросить: дословный отзыв о цене и времени, имя и дата]</span></p></article>
+        <article class="w-card"><div class="w-media small" data-alt="отзыв о русификации с карт: гарантия">Снимок отзыва с карт: про обновления или обращение по гарантии</div><p><span class="w-ask">[запросить: дословный отзыв о гарантии, имя и дата]</span></p></article>
+      </div>
+      <p class="w-note">Видео по клику, текстовые отзывы дословно и со снимком. Если отзывов именно по Monjaro нет, показать отзывы по русификации на других машинах и подписать модель.</p>
+    </div>
+  </section>
+
+  <section class="w-block" data-n="6" data-name="Почему сюда" data-question="Почему у вас?" data-proof="гарантия, обновления, оборудование; подтверждение у заказчика – запросить" data-next="Что ещё важно?">
+    <div class="w-wrap w-stack">
+      <h2>Почему русификацию Geely Monjaro делают у нас</h2>
+      <div class="w-grid" style="--cols:3;--cols-m:1">
+        <article class="w-card"><div class="w-media small" data-alt="гарантия на русификацию Geely Monjaro">Гарантийный документ крупным фрагментом с подписью: гарантия не на словах</div><h3>Гарантия на работы и прошивки</h3><p>Срок: <span class="w-ask">[запросить: срок гарантии]</span></p></article>
+        <article class="w-card"><div class="w-media small" data-alt="обновление Geely Monjaro после русификации">Экран обновления на Monjaro и русский интерфейс после него: обновление не отменяет работу</div><h3>Обновления</h3><p><span class="w-ask">[запросить: что происходит с русификацией при обновлении и как вы это ведёте]</span></p></article>
+        <article class="w-card"><div class="w-media small" data-alt="дилерское оборудование сервиса в Минске">Дилерское оборудование на рабочем месте мастера: чем именно работаем</div><h3>Дилерское оборудование</h3><p><span class="w-ask">[запросить: чем выполняете русификацию Monjaro]</span></p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="w-block" id="faq" data-n="7" data-name="FAQ" data-question="Что ещё важно?" data-proof="ответы" data-next="Как записаться?">
+    <div class="w-wrap w-stack w-faq">
+      <h2>Что спрашивают перед русификацией Geely Monjaro</h2>
+      <details open><summary>Сколько стоит русификация Geely Monjaro?</summary><p>От <span class="w-ask">[запросить: цена, BYN]</span>. Назовём цену до начала работ.</p></details>
+      <details><summary>Сколько времени занимает?</summary><p><span class="w-ask">[запросить: сколько идёт работа]</span></p></details>
+      <details><summary>Какие экраны будут на русском?</summary><p><span class="w-ask">[запросить: какие переводите на гибридном Monjaro]</span></p></details>
+      <details><summary>Что будет после обновления?</summary><p><span class="w-ask">[запросить: что происходит с русификацией при обновлении]</span></p></details>
+      <details><summary>Какая гарантия?</summary><p>Гарантия действует на работы и прошивки. Срок: <span class="w-ask">[запросить: срок гарантии]</span></p></details>
+      <details><summary>Можно вернуть всё как было?</summary><p><span class="w-ask">[запросить: можно ли откатить и сколько это стоит]</span></p></details>
+      <p class="w-note">Вопросы собраны по блокам плана, у самого плана списка для этой страницы нет. Ответы – у мастера, заказчик может заменить вопросы теми, что слышит на звонках.</p>
+    </div>
+  </section>
+
+  <section class="w-block" id="zapis" data-n="8" data-name="Форма" data-question="Как записаться?" data-proof="телефон, адрес" data-next="Что ещё можно сделать?">
+    <div class="w-wrap w-two">
+      <form class="w-form" onsubmit="event.preventDefault()">
+  <h2>Запись на русификацию Geely Monjaro и адрес сервиса</h2>
+  <label class="w-field">Имя<input id="zap-name" name="name" autocomplete="name"></label>
+  <label class="w-field">Телефон<input id="zap-phone" name="phone" type="tel" inputmode="tel" placeholder="+375 (__) ___-__-__"></label>
+  <label class="w-check"><input type="checkbox" id="zap-agree" data-agree> <span>Согласен на обработку <a href="#">персональных данных</a></span></label>
+  <button class="w-btn" id="zap-send" type="submit" disabled>Записаться на русификацию</button>
+  <p class="w-hint">Перезвоним, уточним машину и назовём цену.</p>
+  <div class="w-success">
+    <p><b>Заявка принята.</b></p>
+    <p>Перезвоним: <span class="w-ask">[запросить: срок ответа и кто звонит]</span></p>
+    <p>Срочно – <a href="tel:+375291358888">позвонить +375 29 135-88-88</a> или написать в <a href="#">Telegram</a> · <a href="#">Макс</a></p>
+    <p>Что подготовить: что хотите видеть на русском. Пока ждёте: <a href="#poluchaete">что будет на русском</a>.</p>
+  </div>
+</form>
+      <div class="w-stack">
+  <p><b>Адрес:</b> пр-т Машерова, 15/4, Минск</p>
+  <p><b>Телефон:</b> <a href="tel:+375291358888">+375 29 135-88-88</a></p>
+  <p><b>Часы:</b> <span class="w-ask">[запросить: часы работы]</span></p>
+  <p><b>Написать:</b> <a href="#">Telegram</a> · <a href="#">Макс</a> <span class="w-ask">[запросить: ссылки на Telegram и Макс]</span></p>
+  <div class="w-media small" data-alt="Evolution Car Service на карте Минска, пр-т Машерова, 15/4">Карта с точкой на пр-те Машерова, 15/4 и кнопкой маршрута: человек сразу видит, куда ехать. Карта грузится по клику</div>
+  <div class="w-media small" data-alt="въезд в сервис китайских электромобилей и гибридов, Минск, пр-т Машерова, 15/4">Фото въезда в бокс с улицы, номера машин скрыты строго по рамке: человек узнает место, когда приедет</div>
+</div>
+    </div>
+  </section>
+
+  <section class="w-block" data-n="9" data-name="Другие модели и услуги" data-question="Что ещё можно сделать?" data-proof="та же услуга на других моделях, другие услуги на этой модели">
+    <div class="w-wrap w-stack">
+      <h2>Другие услуги на Geely Monjaro и русификация других моделей</h2>
+      <h3>На этой модели</h3>
+      <div class="w-links"><a href="#">ТО Geely Monjaro</a><a href="#">Диагностика Geely Monjaro</a><a href="#">Ремонт и ТО Geely Monjaro: всё о модели</a></div>
+      <h3>Та же услуга на других моделях</h3>
+      <div class="w-links"><a href="landing-lixiang-l9.html">Русификация Lixiang L9</a><a href="#">Русификация Zeekr 001</a><a href="#">Русификация Voyah Free</a></div>
+      <p><span class="w-ask">[запросить: на каких моделях есть русификация и какие цены]</span></p>
+    </div>
+  </section>
+</main>
+
+<footer class="w-footer"><div class="w-wrap w-stack">
+  <span><b>Evolution Car Service</b> · пр-т Машерова, 15/4, Минск · <a href="tel:+375291358888">+375 29 135-88-88</a> · <a href="#">Telegram</a> · <a href="#">Макс</a></span>
+  <span>Реквизиты: <span class="w-ask">[запросить: название юрлица и УНП]</span></span>
+  <span><a href="#">Политика конфиденциальности</a> · <a href="#">Пользовательское соглашение</a> · <a href="#">Карта сайта</a></span>
+</div></footer>
+
+<div class="w-sticky"><a class="w-btn ghost" href="tel:+375291358888">Позвонить</a><a class="w-btn" href="#zapis">Записаться на русификацию</a></div>
+
+<script>
+// Переключатели прототипа и подпись логики над каждым блоком (по умолчанию скрыто).
+document.querySelectorAll('.w-block').forEach(function (b) {
+  var d = b.dataset, el = document.createElement('div');
+  el.className = 'w-logic';
+  el.innerHTML = '<b>Блок ' + (d.n || '?') + ' · ' + (d.name || '') + '</b><br>Вопрос клиента: ' + (d.question || '–') + '<br>Опора: ' + (d.proof || '–') + (d.next ? '<br>Дальше спросит: ' + d.next : '');
+  if (b.tagName === 'HEADER') b.prepend(el); else (b.querySelector('.w-wrap') || b).prepend(el);
+});
+document.getElementById('t-logic').addEventListener('change', function (e) { document.body.classList.toggle('show-logic', e.target.checked); });
+document.getElementById('t-notes').addEventListener('change', function (e) { document.body.classList.toggle('show-notes', e.target.checked); });
+document.getElementById('t-seo').addEventListener('change', function (e) { document.body.classList.toggle('show-seo', e.target.checked); });
+document.getElementById('t-success').addEventListener('change', function (e) { document.body.classList.toggle('show-success', e.target.checked); });
+(function () {
+  var src = document.getElementById('w-seo'), box = document.getElementById('w-seo-box');
+  if (!src || !box) return;
+  var d = JSON.parse(src.textContent), esc = function (t) { return String(t).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); };
+  var len = function (t, max) { return ' <span class="' + (t.length > max ? 'bad' : '') + '">(' + t.length + ' / ' + max + ')</span>'; };
+  var heads = [].map.call(document.querySelectorAll('main h1, main h2, header h1'), function (h) { return '<li>' + h.tagName + ' – ' + esc(h.textContent.trim()) + '</li>'; }).join('');
+  var alts = [].map.call(document.querySelectorAll('.w-media[data-alt]'), function (m) { return '<li>' + esc(m.dataset.alt) + '</li>'; }).join('');
+  box.innerHTML = '<table><tr><td>title</td><td>' + esc(d.title) + len(d.title, 65) + '</td></tr><tr><td>description</td><td>' + esc(d.description) + len(d.description, 160) +
+    '</td></tr><tr><td>запрос</td><td>' + esc(d.zapros || '–') + '</td></tr><tr><td>заголовки</td><td><ul>' + heads + '</ul></td></tr><tr><td>alt</td><td><ul>' + (alts || '<li>–</li>') +
+    '</ul></td></tr><tr><td>разметка</td><td>' + esc(d.schema || '–') + '</td></tr><tr><td>ссылки</td><td><ul>' + (d.links || []).map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('') + '</ul></td></tr></table>';
+})();
+document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href="#"]'); if (a) e.preventDefault(); });
+document.getElementById('ask-count').textContent = document.querySelectorAll('.w-ask').length;
+// Любая форма: галочка data-agree включает кнопку отправки своей формы.
+document.querySelectorAll('form').forEach(function (f) {
+  var a = f.querySelector('[data-agree]'), btn = f.querySelector('button[type="submit"], button:not([type])');
+  if (a && btn) a.addEventListener('change', function () { btn.disabled = !a.checked; });
+});
+</script>
+</body>
+</html>

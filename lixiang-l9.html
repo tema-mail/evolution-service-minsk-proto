@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Прототип – Лендинг Lixiang L9</title>
+<!-- kit.css вставляется целиком внутрь <style> (прототип – один файл, открывается без интернета) -->
+<style>/* Комплект чёрно-белого прототипа: смысл, текст, порядок и действие. Визуал – дизайнер после «да» владельца. */
+:root {
+  --ink: #141414; --muted: #5f5f5f; --line: #b9b9b9; --fill: #ececec; --fill2: #f6f6f6; --paper: #ffffff;
+  --note: #fff6c8; --note-line: #c9b44a; --ask: #7a1f1f;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, Menlo, Consolas, monospace;
+  --wrap: 1180px;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.55 var(--font); }
+img { max-width: 100%; }
+a { color: var(--ink); }
+h1, h2, h3 { margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(28px, 4.2vw, 46px); }
+h2 { font-size: clamp(22px, 3vw, 32px); }
+h3 { font-size: 18px; }
+p { margin: 0; }
+.w-wrap { max-width: var(--wrap); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.w-stack { display: grid; gap: 14px; }
+.w-muted { color: var(--muted); }
+
+/* Панель прототипа: переключатели «Логика» и «Комментарии» */
+.w-bar { position: sticky; top: 0; z-index: 50; background: var(--ink); color: #fff; font: 13px/1.3 var(--mono); }
+.w-bar .w-wrap { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; padding-block: 8px; }
+.w-bar b { font-weight: 600; }
+.w-bar label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+
+/* Блок и его подпись логики */
+.w-block { border-top: 1px dashed var(--line); padding-block: 40px; position: relative; }
+.w-logic { display: none; font: 12.5px/1.45 var(--mono); background: var(--fill2); border: 1px solid var(--line); padding: 8px 10px; margin-bottom: 18px; }
+body.show-logic .w-logic { display: block; }
+.w-logic b { font-weight: 700; }
+.w-note { display: none; background: var(--note); border: 1px dashed var(--note-line); padding: 8px 10px; font-size: 13.5px; margin-top: 12px; }
+body.show-notes .w-note { display: block; }
+.w-note::before { content: "Дизайнеру: "; font-weight: 700; }
+.w-seo { display: none; font: 13px/1.5 var(--mono); background: #eef3ff; border: 1px solid #8aa0d6; padding: 12px 14px; margin: 12px auto; max-width: var(--wrap); }
+body.show-seo .w-seo { display: block; }
+.w-seo table { border-collapse: collapse; width: 100%; }
+.w-seo td { border-top: 1px solid #c9d4ee; padding: 4px 6px; vertical-align: top; }
+.w-seo td:first-child { white-space: nowrap; font-weight: 700; width: 1%; }
+.w-seo .bad { color: var(--ask); font-weight: 700; }
+.w-seo ul { margin: 0; padding-left: 18px; }
+.w-ask { color: var(--ask); font-weight: 600; background: #f7e9e9; padding: 0 4px; }
+
+/* Место под фото/видео/схему: роль, а не «картинка» */
+.w-media { background: repeating-linear-gradient(45deg, var(--fill), var(--fill) 10px, var(--fill2) 10px, var(--fill2) 20px);
+  border: 1px solid var(--line); min-height: 220px; display: grid; place-items: center; text-align: center; padding: 16px;
+  color: var(--muted); font-size: 14px; }
+.w-media::before { content: "▣ "; }
+.w-media.small { min-height: 120px; }
+
+/* Кнопки */
+.w-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; border: 2px solid var(--ink);
+  background: var(--ink); color: #fff; font-weight: 600; text-decoration: none; border-radius: 6px; cursor: pointer; font-size: 16px; }
+.w-btn.ghost { background: transparent; color: var(--ink); }
+.w-btn[disabled] { opacity: .45; cursor: not-allowed; }
+.w-hint { font-size: 13px; color: var(--muted); }
+
+/* Шапка */
+.w-header .w-wrap { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; justify-content: space-between; padding-block: 12px; }
+.w-logo { border: 2px solid var(--ink); padding: 6px 10px; font-weight: 700; }
+.w-descr { font-size: 13.5px; color: var(--muted); max-width: 34ch; }
+.w-contacts-top { display: grid; gap: 2px; font-size: 14px; text-align: right; }
+.w-nav { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14.5px; border-top: 1px solid var(--line); padding-block: 8px; }
+
+/* Первый экран */
+.w-hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 32px; align-items: center; }
+.w-hero ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.w-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+/* Сетки и карточки */
+.w-grid { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 14px; }
+.w-card { border: 1px solid var(--line); padding: 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.w-card .w-media { min-height: 140px; }
+.w-price { font-weight: 700; }
+
+/* Этапы */
+.w-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); gap: 14px; counter-reset: st; }
+.w-steps li { border: 1px solid var(--line); padding: 14px; counter-increment: st; display: grid; gap: 6px; }
+.w-steps li::before { content: counter(st); font-weight: 700; font-size: 22px; }
+
+/* Таблица */
+.w-table-wrap { overflow-x: auto; }
+.w-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.w-table th, .w-table td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+.w-table th { background: var(--fill2); }
+
+/* FAQ */
+.w-faq details { border: 1px solid var(--line); padding: 12px 14px; }
+.w-faq details + details { border-top: 0; }
+.w-faq summary { font-weight: 600; cursor: pointer; }
+
+/* Форма */
+.w-form { border: 2px solid var(--ink); padding: 18px; display: grid; gap: 12px; max-width: 520px; }
+.w-field { display: grid; gap: 4px; font-size: 14px; }
+.w-field input, .w-field select { min-height: 44px; border: 1px solid var(--ink); padding: 0 10px; font: inherit; background: #fff; }
+.w-check { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; }
+
+/* Полоса призыва */
+.w-cta { background: var(--fill); padding: 24px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+/* Плашка призыва между блоками: section.w-block.w-cta-strip с одной строкой предложения и кнопкой или мини-формой (карточка prizyv-mezhdu-blokami) */
+.w-block.w-cta-strip { padding-block: 16px; }
+.w-cta-strip .w-cta { padding: 14px 18px; }
+.w-cta-strip .w-cta p { margin: 0; font-weight: 600; }
+
+/* Состояние формы после отправки (карточка stranica-spasibo-sleduyushchiy-shag): видно по переключателю «После отправки» */
+.w-success { display: none; border: 2px dashed var(--ink); padding: 14px; background: var(--fill); }
+.w-success p { margin: 0 0 6px; }
+body.show-success .w-success { display: block; }
+
+/* Подвал */
+.w-footer { background: var(--fill2); border-top: 1px solid var(--line); padding-block: 28px; font-size: 14px; }
+
+/* Липкая панель действий на телефоне */
+.w-sticky { display: none; }
+header.w-block { padding-block: 0; border-top: 0; }
+header.w-block > .w-logic { margin: 8px auto; max-width: var(--wrap); }
+
+@media (max-width: 760px) {
+  .w-hide-m { display: none !important; }
+  /* Мобильная шапка: логотип, короткий дескриптор и «Меню»; звонок и мессенджеры – в липкой панели снизу */
+  .w-header .w-wrap { flex-wrap: nowrap; padding-block: 8px; gap: 10px; }
+  .w-header .w-contacts-top, .w-header .w-wrap > .w-btn, .w-nav { display: none !important; }
+  .w-header .w-descr { font-size: 12px; line-height: 1.3; }
+  .w-header > div.w-wrap:has(> .w-logo)::after { content: "☰ Меню"; margin-left: auto; border: 1px solid var(--ink); padding: 6px 10px; font-size: 13px; white-space: nowrap; }
+  .w-hero .w-media, .w-block[data-n="1"] .w-media:first-of-type { min-height: 160px; }
+  .w-bar .w-wrap { padding-block: 4px; gap: 4px 10px; font-size: 11px; }
+  .w-hero { grid-template-columns: 1fr; }
+  .w-grid { grid-template-columns: repeat(var(--cols-m, 2), minmax(0, 1fr)); }
+  .w-steps { grid-template-columns: 1fr; }
+  .w-contacts-top { text-align: left; }
+  .w-block { padding-block: 28px; }
+  .w-sticky { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    padding: 8px max(12px, env(safe-area-inset-right, 0px)) calc(8px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+    background: #fff; border-top: 1px solid var(--line); }
+  body { padding-bottom: 72px; }
+}
+@media (max-width: 420px) { .w-grid.one-m { grid-template-columns: 1fr; } }
+
+/* Дополнения к комплекту для этих трёх страниц: раскладка, без цвета */
+.w-two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+.w-crumbs { font-size: 13px; color: var(--muted); }
+.w-trust { border: 1px solid var(--line); padding: 6px 10px; font-size: 14px; }
+.w-lead { max-width: 76ch; }
+.w-video::before { content: "▶ "; font-size: 22px; }
+.w-cap { font-size: 13.5px; color: var(--muted); }
+.w-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.w-links a { border: 1px solid var(--line); padding: 8px 12px; min-height: 44px; display: inline-flex; align-items: center; }
+.w-sub { font-weight: 600; }
+.w-sticky .w-btn { padding: 0 8px; font-size: 15px; line-height: 1.15; text-align: center; }
+.w-logo { white-space: nowrap; }
+.w-card h3 { hyphens: auto; overflow-wrap: anywhere; }
+@media (min-width: 761px) { .w-hero > .w-media { min-height: 460px; } }
+@media (max-width: 760px) { .w-two { grid-template-columns: 1fr; } .w-header .w-descr { font-size: 11.5px; } .w-logo { font-size: 13px; padding: 4px 6px; } .w-card h3 { font-size: 16px; } }
+</style>
+<!-- Виджеты страницы (окна, ярлычок, боковая панель мессенджеров, нижняя панель телефона) – модуль tema-mail/vidzhety.
+     Набор под страницу – по справочнику ~/.claude/skills/marketolog/references/vidzhety-spravochnik.md. Чтобы включить – раскомментировать
+     это и блок «Виджеты: подключение» в конце страницы, положить рядом vidzhety-<страница>.json. Образец – ~/Sites/sayty-agent/prototipy/gaz-mag/.
+<link rel="stylesheet" href="https://tema-mail.github.io/vidzhety/vidzhety.css">
+<style>
+:root { --w-accent: #141414; --w-accent-2: #5f5f5f; --w-radius: 6px; --w-wa: #3d3d3d; --w-tg: #3d3d3d; --w-max: #3d3d3d; }
+body.vz-has-sticky .w-sticky { display: none !important; }
+</style>
+-->
+</head>
+<body>
+<div class="w-bar"><div class="w-wrap">
+  <b>Прототип · Evolution Car Service · Лендинг Lixiang L9 · версия 08.11.2026</b>
+  <label><input type="checkbox" id="t-logic"> Логика блоков</label>
+  <label><input type="checkbox" id="t-notes"> Комментарии дизайнеру</label>
+  <label><input type="checkbox" id="t-seo"> SEO страницы</label>
+  <label><input type="checkbox" id="t-success"> После отправки</label>
+  <span>Меток «запросить»: <b id="ask-count">0</b></span>
+</div></div>
+
+<script type="application/json" id="w-seo">{"title":"Ремонт и ТО Lixiang L9 в Минске: цены, диагностика, запись","description":"Ремонт и техническое обслуживание Lixiang L9 (Лисян Л9) в Минске: плановое ТО, диагностика, батарея, пневмоподвеска, русификация. Цена до начала работ.","h1":"Ремонт и техническое обслуживание (ТО) Lixiang L9 в Минске","zapros":"ремонт и ТО Lixiang L9 Минск; также: техническое обслуживание, техобслуживание, плановое обслуживание, сервис, диагностика Lixiang L9, Лисян Л9","schema":"AutoRepair (адрес, телефон), Service, BreadcrumbList, FAQPage; AggregateRating и Review, когда появятся настоящие оценка и отзывы с карт. Адрес страницы: /brands/lixiang/l9","links":["/services/maintenance/lixiang/l9 – плановое ТО L9","/services/diagnostics/lixiang/l9 – компьютерная диагностика L9","/services/high-voltage-battery/lixiang/l9 – диагностика батареи L9","/services/oil-change/lixiang/l9 – масло в ДВС-генераторе и редукторах","/services/air-suspension/lixiang/l9 – ремонт пневмоподвески L9","/services/brakes/lixiang/l9 – тормоза L9","/services/air-conditioning-recharge/lixiang/l9 – заправка кондиционера L9","/services/russification/lixiang/l9 – русификация и приложения L9","/services/pandora-alarm/lixiang/l9 – сигнализация Pandora на L9","/brands/lixiang – хаб марки","/brands/lixiang/l7, /brands/lixiang/l8, /brands/zeekr/001, /brands/zeekr/x, /brands/voyah/free, /brands/geely/monjaro – другие модели"]}</script>
+<div class="w-seo" id="w-seo-box"></div>
+
+<header class="w-header w-block" data-n="0" data-name="Шапка" data-question="Где вы и как с вами связаться?" data-proof="адрес, телефон, часы, Telegram и Макс">
+  <div class="w-wrap">
+    <span class="w-logo">Evolution Car Service</span>
+    <span class="w-descr">Ремонт и ТО китайских электромобилей и гибридов в Минске</span>
+    <span class="w-contacts-top"><a href="tel:+375291358888">+375 29 135-88-88</a><span class="w-muted">пр-т Машерова, 15/4, Минск</span><span class="w-muted">Часы: <span class="w-ask">[запросить: часы работы]</span></span><span><a href="#">Telegram</a> · <a href="#">Макс</a></span></span>
+    <a class="w-btn ghost" href="#zapis">Записаться на ТО L9</a>
+  </div>
+  <nav class="w-wrap w-nav"><a href="#uslugi">Что делаем на L9</a><a href="#ceny">Цены</a><a href="#diagnostika">Диагностика</a><a href="#reglament">Регламент ТО</a><a href="#raboty">Работы</a><a href="#otzyvy">Отзывы</a><a href="#faq">Вопросы</a><a href="#zapis">Запись и адрес</a></nav>
+</header>
+
+<main>
+  <section class="w-block" data-n="1" data-name="Первый экран" data-question="Здесь обслужат мою L9 и сколько это стоит?" data-proof="живое фото L9 в боксе, цена ТО от, рейтинг с карт" data-next="Что именно делаете на L9?">
+    <div class="w-wrap">
+      <div class="w-hero">
+        <div class="w-stack">
+          <p class="w-crumbs"><a href="glavnaya.html">Главная</a> / <a href="#">Марки</a> / <a href="#">Lixiang</a> / Lixiang L9</p>
+          <h1>Ремонт и техническое обслуживание (ТО) Lixiang L9 в Минске</h1>
+          <p>Плановое ТО по регламенту производителя, диагностика на дилерском оборудовании и ремонт любой сложности. Назовём цену до начала работ.</p>
+          <ul>
+            <li><b>ТО L9</b> – от <span class="w-ask">[запросить: цена ТО L9, BYN]</span></li>
+            <li><b>Дилерское оборудование</b> – видим все блоки L9</li>
+            <li><b>Гарантия</b> – на работы и прошивки, <span class="w-ask">[запросить: срок гарантии]</span></li>
+            <li><b>Минск</b> – пр-т Машерова, 15/4</li>
+          </ul>
+          <p class="w-trust">Рейтинг на картах: <span class="w-ask">[запросить: оценка, площадка, год, ссылка]</span></p>
+          <div class="w-actions"><a class="w-btn" href="#zapis">Записаться на ТО L9</a><a class="w-btn ghost" href="tel:+375291358888">+375 29 135-88-88</a></div>
+          <p class="w-hint">Перезвоним, уточним пробег и назовём цену.</p>
+        </div>
+        <div class="w-media" data-alt="Lixiang L9 на техническом обслуживании в боксе сервиса, Минск">Живое фото: Lixiang L9 в боксе сервиса, рядом мастер, номер скрыт строго по рамке. Доказывает: эта машина реально стоит у нас, а не на стоке</div>
+      </div>
+      <p class="w-note">Страница идёт в контекстную рекламу: H1, цена, кнопка и номер в первом окне на 390 и 1440. Номер – ссылка tel. На телефоне снизу липкая панель. Фото не сток: живой бокс заказчика, клик открывает лайтбокс.</p>
+      <p class="w-note">Виджеты страницы: липкая панель на телефоне; боковая панель связи на компьютере (телефон, Telegram, Макс); обратный звонок по клику; окно на уходе на компьютере с прайсом L9, когда будет настоящий прайс. Окон по времени нет. Почему так: страница получает рекламу и поиск, перекрывать текст нельзя, а связь должна быть в одно касание. Подключается при вёрстке модулем tema-mail/vidzhety.</p>
+    </div>
+  </section>
+
+  <section class="w-block" id="uslugi" data-n="2" data-name="Услуги на модели" data-question="Что именно делаете на L9?" data-proof="карточки с ценой от и ссылкой на узкую страницу" data-next="Сколько стоит всё остальное?">
+    <div class="w-wrap w-stack">
+      <h2>Что делаем на Lixiang L9</h2>
+      <div class="w-grid" style="--cols:3;--cols-m:2">
+        <article class="w-card"><h3>Плановое ТО</h3><p>По регламенту производителя.</p><span class="w-price">от <span class="w-ask">[запросить: цена]</span></span><a href="#">Плановое ТО Lixiang L9</a></article>
+        <article class="w-card"><h3>Компьютерная диагностика</h3><p>Дилерское оборудование: видим все блоки L9.</p><span class="w-price">от <span class="w-ask">[запросить: цена]</span></span><a href="#">Диагностика Lixiang L9</a></article>
+        <article class="w-card"><h3>Диагностика батареи</h3><p>Говорим, что срочно, а что может подождать.</p><span class="w-price">от <span class="w-ask">[запросить: цена]</span></span><a href="#">Диагностика батареи Lixiang L9</a></article>
+        <article class="w-card"><h3>Масло в ДВС-генераторе и редукторах</h3><p>Замена по регламенту производителя.</p><span class="w-price">от <span class="w-ask">[запросить: цена]</span></span><a href="#">Масло Lixiang L9</a></article>
+        <article class="w-card"><h3>Ремонт пневмоподвески</h3><p>Пневмоподвеска стоит во всех версиях L9.</p><span class="w-price">от <span class="w-ask">[запросить: цена]</span></span><a href="#">Ремонт пневмоподвески Lixiang L9</a></article>
+        <article class="w-card"><h3>Тормоза</h3><p><span class="w-ask">[запросить: что входит]</span></p><span class="w-price">от <span class="w-ask">[запросить: цена]</span></span><a href="#">Тормоза Lixiang L9</a></article>
+        <article class="w-card"><h3>Заправка кондиционера</h3><p><span class="w-ask">[запросить: что входит]</span></p><span class="w-price">от <span class="w-ask">[запросить: цена]</span></span><a href="#">Заправка кондиционера Lixiang L9</a></article>
+        <article class="w-card"><h3>Русификация и приложения</h3><p>Гарантия на работы и прошивки.</p><span class="w-price">от <span class="w-ask">[запросить: цена]</span></span><a href="#">Русификация Lixiang L9</a></article>
+        <article class="w-card"><h3>Сигнализация Pandora</h3><p><span class="w-ask">[запросить: какие модели]</span></p><span class="w-price">от <span class="w-ask">[запросить: цена]</span></span><a href="#">Сигнализация Pandora на Lixiang L9</a></article>
+      </div>
+      <p class="w-note">Одно намерение – один адрес: каждая карточка ведёт на страницу ветки /services, адреса в SEO-слое. Слаги услуг предварительные, в плане задан лишь шаблон адреса.</p>
+    </div>
+  </section>
+
+  <section class="w-block" id="ceny" data-n="3" data-name="Прайс на модель" data-question="Сколько стоит всё остальное?" data-proof="таблица цен BYN" data-next="Как понять, что с машиной?">
+    <div class="w-wrap w-stack">
+      <h2>Цены на ремонт и ТО Lixiang L9</h2>
+      <div class="w-table-wrap"><table class="w-table">
+        <tr><th>Работа на Lixiang L9</th><th>Цена от, BYN</th></tr>
+        <tr><td>Плановое ТО</td><td><span class="w-ask">[запросить: цена, BYN]</span></td></tr>
+        <tr><td>Компьютерная диагностика</td><td><span class="w-ask">[запросить: цена, BYN]</span></td></tr>
+        <tr><td>Диагностика батареи</td><td><span class="w-ask">[запросить: цена, BYN]</span></td></tr>
+        <tr><td>Масло в ДВС-генераторе</td><td><span class="w-ask">[запросить: цена, BYN]</span></td></tr>
+        <tr><td>Масло в редукторах</td><td><span class="w-ask">[запросить: цена, BYN]</span></td></tr>
+        <tr><td>Ремонт пневмоподвески</td><td><span class="w-ask">[запросить: цена, BYN]</span></td></tr>
+        <tr><td>Тормоза</td><td><span class="w-ask">[запросить: цена, BYN]</span></td></tr>
+        <tr><td>Заправка кондиционера</td><td><span class="w-ask">[запросить: цена, BYN]</span></td></tr>
+        <tr><td>Русификация и приложения</td><td><span class="w-ask">[запросить: цена, BYN]</span></td></tr>
+        <tr><td>Сигнализация Pandora</td><td><span class="w-ask">[запросить: цена, BYN]</span></td></tr>
+        <tr><td colspan="2"><span class="w-ask">[запросить: остальные строки прайса L9]</span></td></tr>
+      </table></div>
+      <p>Цена согласуется до начала работ.</p>
+      <p class="w-note">Цены – текстом в таблице, а не картинкой: их читают поиск и нейросети. Таблица без кнопки: следующей идёт плашка акции.</p>
+    </div>
+  </section>
+
+  <section class="w-block w-cta-strip" data-n="3а" data-name="Плашка акции" data-question="Цена понятна – можно дешевле?" data-proof="осенняя акция с живого сайта, срок проверять при выкладке">
+    <div class="w-wrap"><div class="w-cta"><p>Осенняя акция: скидка 10 % на ремонт и ТО, с 1 октября по 1 декабря.</p><a class="w-btn" href="#zapis">Записаться со скидкой 10 %</a></div>
+    <p class="w-note">Плашка живёт, пока акция действует: срок проверить при выкладке, после 1 декабря снять. Условия подтвердить у заказчика.</p></div>
+  </section>
+
+  <section class="w-block" id="diagnostika" data-n="4" data-name="Диагностика" data-question="Как понять, что с машиной?" data-proof="дилерский сканер, что проверяем, фото экрана" data-next="Когда мне на ТО и что будут менять?">
+    <div class="w-wrap w-stack">
+      <h2>Диагностика Lixiang L9: найдём причину до ремонта</h2>
+      <div class="w-two">
+        <div class="w-stack">
+          <p>У L9 много блоков управления, обычный сканер видит не все. Смотрим ошибки, батарею, генератор, пневмоподвеску и говорим, что срочно, а что может подождать.</p>
+          <p>Цена диагностики: от <span class="w-ask">[запросить: цена диагностики L9, BYN]</span>, время: <span class="w-ask">[запросить: сколько идёт диагностика L9]</span></p>
+          <div class="w-media small" data-alt="экран дилерского сканера, диагностика Lixiang L9 в Минске">Фото экрана дилерского сканера со списком блоков L9, крупно и с подписью. Доказывает, что мы видим все блоки</div>
+          <div class="w-media small" data-alt="мастер проводит компьютерную диагностику Lixiang L9">Мастер подключает сканер к L9 в боксе, лицо видно, номер скрыт строго по рамке. Показывает, как проходит диагностика</div>
+        </div>
+        <form class="w-form" onsubmit="event.preventDefault()">
+  
+  
+  <label class="w-field">Телефон<input id="diag-phone" name="phone" type="tel" inputmode="tel" placeholder="+375 (__) ___-__-__"></label>
+  <label class="w-check"><input type="checkbox" id="diag-agree" data-agree> <span>Согласен на обработку <a href="#">персональных данных</a></span></label>
+  <button class="w-btn" id="diag-send" type="submit" disabled>Записаться на диагностику</button>
+  <p class="w-hint">Перезвоним, уточним, что беспокоит, и назовём цену диагностики.</p>
+  <div class="w-success">
+    <p><b>Заявка принята.</b></p>
+    <p>Перезвоним: <span class="w-ask">[запросить: срок ответа и кто звонит]</span></p>
+    <p>Срочно – <a href="tel:+375291358888">позвонить +375 29 135-88-88</a> или написать в <a href="#">Telegram</a> · <a href="#">Макс</a></p>
+    <p>Что подготовить: пробег и что замечали в машине. Пока ждёте: <a href="#reglament">когда на ТО и что меняем</a>.</p>
+  </div>
+</form>
+      </div>
+      <p class="w-note">Это плашка диагностики из плана: отдельный вход для тех, кому не нужно плановое ТО. Мини-форма в одно поле, чтобы не вести человека на форму ТО.</p>
+    </div>
+  </section>
+
+  <section class="w-block" id="reglament" data-n="5" data-name="Регламент ТО" data-question="Когда мне на ТО и что будут менять?" data-proof="таблица по пробегу из регламента производителя" data-next="Какие проблемы бывают у L9?">
+    <div class="w-wrap w-stack">
+      <h2>Когда проходить ТО Lixiang L9 и что меняем</h2>
+      <p class="w-lead">Техобслуживание L9 идёт по регламенту производителя. Плановое обслуживание считаем по пробегу: находите свой и видите, что меняем.</p>
+      <div class="w-table-wrap"><table class="w-table">
+        <tr><th>ТО</th><th>Пробег или срок</th><th>Что меняем и проверяем</th></tr>
+        <tr><td>ТО 1</td><td><span class="w-ask">[запросить: интервал из регламента]</span></td><td><span class="w-ask">[запросить: состав работ из регламента]</span></td></tr>
+        <tr><td>ТО 2</td><td><span class="w-ask">[запросить: интервал из регламента]</span></td><td><span class="w-ask">[запросить: состав работ из регламента]</span></td></tr>
+        <tr><td>ТО 3</td><td><span class="w-ask">[запросить: интервал из регламента]</span></td><td><span class="w-ask">[запросить: состав работ из регламента]</span></td></tr>
+        <tr><td>ТО 4</td><td><span class="w-ask">[запросить: интервал из регламента]</span></td><td><span class="w-ask">[запросить: состав работ из регламента]</span></td></tr>
+      </table></div>
+      <div class="w-actions"><a class="w-btn ghost" href="#zapis">Узнать, что менять на моём пробеге</a></div>
+      <p class="w-note">Источник таблицы – регламент производителя L9: нужен документ, цифры с чужих сайтов не брать. На телефоне таблица листается внутри своей рамки.</p>
+    </div>
+  </section>
+
+  <section class="w-block" data-n="6" data-name="Особенности L9" data-question="Какие проблемы бывают у L9?" data-proof="неисправности из практики, пневмоподвеска, генератор" data-next="Почему сюда, а не к дилеру или в обычный сервис?">
+    <div class="w-wrap w-stack">
+      <h2>Что важно знать про сервис Lixiang L9</h2>
+      <p class="w-lead">L9 ездит на электромоторах, бензиновый двигатель заряжает батарею; пневмоподвеска стоит во всех версиях.</p>
+      <div class="w-grid" style="--cols:3;--cols-m:1">
+        <article class="w-card"><div class="w-media small" data-alt="пневмоподвеска Lixiang L9, ремонт в сервисе">Снятый узел пневмоподвески L9 рядом с новым и строка заказ-наряда: показывает, что меняли на практике</div><h3>Пневмоподвеска</h3><p><span class="w-ask">[запросить: что выходит из строя на практике, признаки, что делали]</span></p></article>
+        <article class="w-card"><div class="w-media small" data-alt="ДВС-генератор Lixiang L9 на сервисе">ДВС-генератор L9 при работах в боксе: показывает, что мастер работает с этим узлом</div><h3>Генератор</h3><p><span class="w-ask">[запросить: что встречается на практике, признаки, что делали]</span></p></article>
+        <article class="w-card"><div class="w-media small" data-alt="неисправность Lixiang L9 из практики сервиса">Случай из практики: что пришло, что нашли, что сделали. Снимок экрана или детали крупно</div><h3>Другие случаи из практики</h3><p><span class="w-ask">[запросить: 2–3 неисправности L9, которые вы реально чинили]</span></p></article>
+      </div>
+      <p class="w-note">Главный блок против одинаковых лендингов: на другой модели здесь другой текст. Без фактов сервиса страницу под индекс не выпускать.</p>
+    </div>
+  </section>
+
+  <section class="w-block" data-n="7" data-name="Почему сюда" data-question="Почему сюда, а не к дилеру или в обычный сервис?" data-proof="преимущества с живого сайта с фото; подтверждение у заказчика – запросить" data-next="Вы уже работали с такими?">
+    <div class="w-wrap w-stack">
+      <h2>Почему владельцы L9 едут к нам</h2>
+      <div class="w-grid" style="--cols:3;--cols-m:2">
+        <article class="w-card"><div class="w-media small" data-alt="мастер сервиса и его личный электромобиль">Мастер рядом со своим электромобилем: это его машина, он ездит на ней каждый день</div><h3>Сами владельцы электромобилей</h3><p>Консультируем из ежедневной езды.</p></article>
+        <article class="w-card"><div class="w-media small" data-alt="мастер работает с высоковольтной системой питания">Мастер работает с высоковольтной частью L9 в средствах защиты; рядом допуск или сертификат крупно</div><h3>Каждый мастер знает высоковольтную систему питания</h3><p><span class="w-ask">[запросить: чем подтвердить: обучение, допуск]</span></p></article>
+        <article class="w-card"><div class="w-media small" data-alt="дилерское оборудование для диагностики Lixiang L9">Дилерский сканер крупно в руках мастера, на экране машина клиента</div><h3>Дилерское оборудование для диагностики</h3><p>Видим все блоки L9.</p></article>
+        <article class="w-card"><div class="w-media small" data-alt="запчасти и расходники для Lixiang L9 от поставщиков из Китая">Коробки с запчастями на складе сервиса, маркировка поставщика читается</div><h3>Запчасти и расходники напрямую у поставщиков из Китая</h3><p><span class="w-ask">[запросить: что есть в наличии, сроки поставки]</span></p></article>
+        <article class="w-card"><div class="w-media small" data-alt="гарантия на работы и прошивки, документ сервиса">Настоящий гарантийный документ сервиса крупным фрагментом с подписью</div><h3>Гарантия на работы и прошивки</h3><p>Срок: <span class="w-ask">[запросить: срок гарантии]</span></p></article>
+        <article class="w-card"><div class="w-media small" data-alt="цена согласуется до начала работ, заказ-наряд">Фрагмент заказ-наряда с согласованной суммой и подписью клиента до начала работ, личные данные скрыты</div><h3>Цена согласуется до начала работ</h3><p>Назовём цену и начнём работу после вашего согласия.</p></article>
+      </div>
+      <p class="w-note">Шесть преимуществ из плана, каждое со своим доказательством в кадре. Факты сняты с живого сайта сервиса, заказчик их ещё не подтвердил. Цветом и размером не выделять неподтверждённое как главное.</p>
+    </div>
+  </section>
+
+  <section class="w-block" id="raboty" data-n="8" data-name="Живые фото работ" data-question="Вы уже работали с такими?" data-proof="галерея работ по L9, номера скрыты, лайтбокс" data-next="Что говорят владельцы?">
+    <div class="w-wrap w-stack">
+      <h2>Работы по Lixiang L9: что уже делали</h2>
+      <p><span class="w-ask">[запросить: 8 живых фото работ по L9: что за работа и пробег к каждому]</span></p>
+      <div class="w-grid" style="--cols:4;--cols-m:2">
+        <figure style="margin:0" class="w-stack"><div class="w-media small" data-alt="Lixiang L9 на подъёмнике в сервисе, Минск">L9 на подъёмнике, вид снизу: машина реально в нашем боксе</div><figcaption class="w-cap">Подпись: работа, пробег</figcaption></figure>
+        <figure style="margin:0" class="w-stack"><div class="w-media small" data-alt="плановое ТО Lixiang L9, замена масла и фильтров">Плановое ТО: слитое масло и новые фильтры рядом с машиной</div><figcaption class="w-cap">Подпись: работа, пробег</figcaption></figure>
+        <figure style="margin:0" class="w-stack"><div class="w-media small" data-alt="работы с ДВС-генератором Lixiang L9">Мастер у ДВС-генератора L9: работа с этим узлом на нашем подъёмнике</div><figcaption class="w-cap">Подпись: работа, пробег</figcaption></figure>
+        <figure style="margin:0" class="w-stack"><div class="w-media small" data-alt="диагностика батареи Lixiang L9">Диагностика батареи: прибор и результаты на экране крупно</div><figcaption class="w-cap">Подпись: работа, пробег</figcaption></figure>
+        <figure style="margin:0" class="w-stack"><div class="w-media small" data-alt="ремонт пневмоподвески Lixiang L9 в Минске">Пневмоподвеска: старая и новая деталь рядом</div><figcaption class="w-cap">Подпись: работа, пробег</figcaption></figure>
+        <figure style="margin:0" class="w-stack"><div class="w-media small" data-alt="работы по тормозам Lixiang L9">Тормоза: снятые колодки и диск, остаток виден</div><figcaption class="w-cap">Подпись: работа, пробег</figcaption></figure>
+        <figure style="margin:0" class="w-stack"><div class="w-media small" data-alt="русификация и приложения на Lixiang L9">Экран L9 на русском после работ: результат виден сразу</div><figcaption class="w-cap">Подпись: работа, пробег</figcaption></figure>
+        <figure style="margin:0" class="w-stack"><div class="w-media small" data-alt="Lixiang L9 после ремонта и ТО, выдача клиенту">Готовая L9 у ворот на выдаче, номер скрыт строго по рамке</div><figcaption class="w-cap">Подпись: работа, пробег</figcaption></figure>
+      </div>
+      <p class="w-note">Фото живые, бокс и мастера заказчика. Номера скрыты строго по контуру таблички. Клик по фото открывает лайтбокс. Картинки в WebP, с ленивой загрузкой. На телефоне две в ряд.</p>
+    </div>
+  </section>
+
+  <section class="w-block w-cta-strip" data-n="8а" data-name="Плашка после работ" data-question="Такая работа нужна и моей машине – что сделать?" data-proof="работы из блока выше, цена до начала работ">
+    <div class="w-wrap"><div class="w-cta"><p>Нужно то же на вашей L9? Перезвоним, уточним пробег и назовём цену.</p><a class="w-btn" href="#zapis">Узнать цену для моей L9</a></div></div>
+  </section>
+
+  <section class="w-block" data-n="9" data-name="Видеоотзывы" data-question="Что говорят владельцы?" data-proof="3 ролика владельцев, по клику" data-next="Это правда? Можно проверить?">
+    <div class="w-wrap w-stack">
+      <h2>Владельцы рассказывают о сервисе на видео</h2>
+      <p><span class="w-ask">[запросить: 3 видеоотзыва владельцев L9 с их разрешением]</span></p>
+      <div class="w-grid" style="--cols:3;--cols-m:1">
+        <article class="w-card"><div class="w-media w-video" data-alt="видеоотзыв владельца Lixiang L9 о плановом ТО">Видео 1. Обложка: владелец у своей L9, лицо видно, номер скрыт по рамке. О плановом ТО: что сделали и сколько вышло</div><p class="w-cap">Имя, модель, пробег</p></article>
+        <article class="w-card"><div class="w-media w-video" data-alt="видеоотзыв владельца Lixiang L9 о диагностике">Видео 2. Обложка: владелец в боксе рядом с мастером. О диагностике: что беспокоило и какую причину нашли</div><p class="w-cap">Имя, модель, пробег</p></article>
+        <article class="w-card"><div class="w-media w-video" data-alt="видеоотзыв владельца Lixiang L9 о сервисе в Минске">Видео 3. Обложка: владелец за рулём L9. О выборе сервиса: почему приехал сюда и приехал ли снова</div><p class="w-cap">Имя, модель, пробег</p></article>
+      </div>
+      <p class="w-note">На странице – обложка и значок воспроизведения. Видео грузится по клику, автозвука нет. Обложка вертикальная, в карточке видно лицо.</p>
+    </div>
+  </section>
+
+  <section class="w-block" id="otzyvy" data-n="10" data-name="Текстовые отзывы" data-question="Это правда? Можно проверить?" data-proof="отзывы с датой и ссылка на карты" data-next="Что ещё важно узнать?">
+    <div class="w-wrap w-stack">
+      <h2>Что пишут о сервисе на картах</h2>
+      <p class="w-trust">Оценка на картах: <span class="w-ask">[запросить: оценка, число отзывов, площадка, дата снятия]</span> · <a href="#">Все отзывы на картах</a> <span class="w-ask">[запросить: ссылка на карточку сервиса]</span></p>
+      <div class="w-grid" style="--cols:2;--cols-m:1">
+        <article class="w-card">
+  <div class="w-media small" data-alt="отзыв о плановом ТО Lixiang L9 с карт">Снимок отзыва с карт крупно, с именем и датой: про плановое ТО L9. Человек может найти его на площадке сам</div>
+  <p><span class="w-ask">[запросить: дословный отзыв с карт: про плановое ТО L9]</span></p>
+  <p class="w-cap">Имя и дата: <span class="w-ask">[запросить: как в карточке на картах, с разрешения]</span></p>
+</article>
+        <article class="w-card">
+  <div class="w-media small" data-alt="отзыв о диагностике Lixiang L9 с карт">Снимок отзыва с карт крупно, с именем и датой: про найденную причину при диагностике. Человек может найти его на площадке сам</div>
+  <p><span class="w-ask">[запросить: дословный отзыв с карт: про найденную причину при диагностике]</span></p>
+  <p class="w-cap">Имя и дата: <span class="w-ask">[запросить: как в карточке на картах, с разрешения]</span></p>
+</article>
+        <article class="w-card">
+  <div class="w-media small" data-alt="отзыв о цене ремонта Lixiang L9 с карт">Снимок отзыва с карт крупно, с именем и датой: про цену, согласованную до начала работ. Человек может найти его на площадке сам</div>
+  <p><span class="w-ask">[запросить: дословный отзыв с карт: про цену, согласованную до начала работ]</span></p>
+  <p class="w-cap">Имя и дата: <span class="w-ask">[запросить: как в карточке на картах, с разрешения]</span></p>
+</article>
+        <article class="w-card">
+  <div class="w-media small" data-alt="отзыв о ремонте Lixiang L9 с карт">Снимок отзыва с карт крупно, с именем и датой: про ремонт пневмоподвески или другой ремонт. Человек может найти его на площадке сам</div>
+  <p><span class="w-ask">[запросить: дословный отзыв с карт: про ремонт пневмоподвески или другой ремонт]</span></p>
+  <p class="w-cap">Имя и дата: <span class="w-ask">[запросить: как в карточке на картах, с разрешения]</span></p>
+</article>
+      </div>
+      <p class="w-note">Отзывы дословно, со снимком и датой, ни одного придуманного.</p>
+    </div>
+  </section>
+
+  <section class="w-block" id="faq" data-n="11" data-name="FAQ" data-question="Что ещё важно узнать?" data-proof="вопросы с ответами" data-next="Как записаться и куда ехать?">
+    <div class="w-wrap w-stack w-faq">
+      <h2>Что спрашивают владельцы L9 перед ТО</h2>
+      <details open><summary>Зачем ТО после покупки, если машина новая?</summary><p>Плановое ТО идёт по регламенту производителя: он задаёт, что и когда менять на новой машине. Первое ТО: <span class="w-ask">[запросить: когда первое ТО L9 по регламенту]</span></p></details>
+      <details><summary>Езжу в основном на электричестве, можно реже менять масло?</summary><p>L9 ездит на электромоторах, бензиновый двигатель заряжает батарею. Как считать замену масла при такой езде: <span class="w-ask">[запросить: что говорит регламент L9]</span></p></details>
+      <details><summary>Что входит в плановое ТО L9?</summary><p><span class="w-ask">[запросить: состав планового ТО L9 из регламента]</span> Таблица по пробегу – <a href="#reglament">выше на странице</a>.</p></details>
+      <details><summary>Сколько длится ТО?</summary><p><span class="w-ask">[запросить: время ТО L9]</span></p></details>
+      <details><summary>Какая гарантия на работы и запчасти?</summary><p>Гарантия действует на работы и прошивки. Срок и условия по запчастям: <span class="w-ask">[запросить: срок гарантии на работы и прошивки, условия по запчастям]</span></p></details>
+      <details><summary>Можно привезти свои запчасти?</summary><p><span class="w-ask">[запросить: можно ли и какая тогда гарантия]</span></p></details>
+      <p class="w-note">Вопросы и ответы открыты для поиска и видны в разметке FAQPage. Первый ответ раскрыт, остальные по клику.</p>
+    </div>
+  </section>
+
+  <section class="w-block" id="zapis" data-n="12" data-name="Форма и контакт" data-question="Как записаться и куда ехать?" data-proof="имя, телефон, галочка; адрес, карта, часы" data-next="У меня другая модель?">
+    <div class="w-wrap w-two">
+      <form class="w-form" onsubmit="event.preventDefault()">
+  <h2>Запись на ТО Lixiang L9 и адрес сервиса</h2>
+  <label class="w-field">Имя<input id="zap-name" name="name" autocomplete="name"></label>
+  <label class="w-field">Телефон<input id="zap-phone" name="phone" type="tel" inputmode="tel" placeholder="+375 (__) ___-__-__"></label>
+  <label class="w-check"><input type="checkbox" id="zap-agree" data-agree> <span>Согласен на обработку <a href="#">персональных данных</a></span></label>
+  <button class="w-btn" id="zap-send" type="submit" disabled>Записаться на ТО L9</button>
+  <p class="w-hint">Перезвоним, уточним пробег и назовём цену.</p>
+  <div class="w-success">
+    <p><b>Заявка принята.</b></p>
+    <p>Перезвоним: <span class="w-ask">[запросить: срок ответа и кто звонит]</span></p>
+    <p>Срочно – <a href="tel:+375291358888">позвонить +375 29 135-88-88</a> или написать в <a href="#">Telegram</a> · <a href="#">Макс</a></p>
+    <p>Что подготовить: пробег L9 и что беспокоит в машине. Пока ждёте: <a href="#reglament">когда на ТО и что меняем</a>.</p>
+  </div>
+</form>
+      <div class="w-stack">
+  <p><b>Адрес:</b> пр-т Машерова, 15/4, Минск</p>
+  <p><b>Телефон:</b> <a href="tel:+375291358888">+375 29 135-88-88</a></p>
+  <p><b>Часы:</b> <span class="w-ask">[запросить: часы работы]</span></p>
+  <p><b>Написать:</b> <a href="#">Telegram</a> · <a href="#">Макс</a> <span class="w-ask">[запросить: ссылки на Telegram и Макс]</span></p>
+  <div class="w-media small" data-alt="Evolution Car Service на карте Минска, пр-т Машерова, 15/4">Карта с точкой на пр-те Машерова, 15/4 и кнопкой маршрута: человек сразу видит, куда ехать. Карта грузится по клику</div>
+  <div class="w-media small" data-alt="въезд в сервис китайских электромобилей и гибридов, Минск, пр-т Машерова, 15/4">Фото въезда в бокс с улицы, номера машин скрыты строго по рамке: человек узнает место, когда приедет</div>
+</div>
+    </div>
+  </section>
+
+  <section class="w-block" data-n="13" data-name="Другие модели" data-question="У меня другая модель?" data-proof="ссылки с полным названием">
+    <div class="w-wrap w-stack">
+      <h2>Ремонт и ТО других моделей в Минске</h2>
+      <div class="w-links"><a href="#">Ремонт и ТО Lixiang L7</a><a href="#">Ремонт и ТО Lixiang L8</a><a href="#">Ремонт и ТО Zeekr 001</a><a href="#">Ремонт и ТО Zeekr X</a><a href="#">Ремонт и ТО Voyah Free</a><a href="#">Ремонт и ТО Geely Monjaro</a></div>
+      <p class="w-note">Список из карты сайта, окончательный – по решению о первой волне лендингов.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="w-footer"><div class="w-wrap w-stack">
+  <span><b>Evolution Car Service</b> · пр-т Машерова, 15/4, Минск · <a href="tel:+375291358888">+375 29 135-88-88</a> · <a href="#">Telegram</a> · <a href="#">Макс</a></span>
+  <span>Реквизиты: <span class="w-ask">[запросить: название юрлица и УНП]</span></span>
+  <span><a href="#">Политика конфиденциальности</a> · <a href="#">Пользовательское соглашение</a> · <a href="#">Карта сайта</a></span>
+</div></footer>
+
+<div class="w-sticky"><a class="w-btn ghost" href="tel:+375291358888">Позвонить</a><a class="w-btn" href="#zapis">Записаться на ТО L9</a></div>
+
+<script>
+// Переключатели прототипа и подпись логики над каждым блоком (по умолчанию скрыто).
+document.querySelectorAll('.w-block').forEach(function (b) {
+  var d = b.dataset, el = document.createElement('div');
+  el.className = 'w-logic';
+  el.innerHTML = '<b>Блок ' + (d.n || '?') + ' · ' + (d.name || '') + '</b><br>Вопрос клиента: ' + (d.question || '–') + '<br>Опора: ' + (d.proof || '–') + (d.next ? '<br>Дальше спросит: ' + d.next : '');
+  if (b.tagName === 'HEADER') b.prepend(el); else (b.querySelector('.w-wrap') || b).prepend(el);
+});
+document.getElementById('t-logic').addEventListener('change', function (e) { document.body.classList.toggle('show-logic', e.target.checked); });
+document.getElementById('t-notes').addEventListener('change', function (e) { document.body.classList.toggle('show-notes', e.target.checked); });
+document.getElementById('t-seo').addEventListener('change', function (e) { document.body.classList.toggle('show-seo', e.target.checked); });
+document.getElementById('t-success').addEventListener('change', function (e) { document.body.classList.toggle('show-success', e.target.checked); });
+(function () {
+  var src = document.getElementById('w-seo'), box = document.getElementById('w-seo-box');
+  if (!src || !box) return;
+  var d = JSON.parse(src.textContent), esc = function (t) { return String(t).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); };
+  var len = function (t, max) { return ' <span class="' + (t.length > max ? 'bad' : '') + '">(' + t.length + ' / ' + max + ')</span>'; };
+  var heads = [].map.call(document.querySelectorAll('main h1, main h2, header h1'), function (h) { return '<li>' + h.tagName + ' – ' + esc(h.textContent.trim()) + '</li>'; }).join('');
+  var alts = [].map.call(document.querySelectorAll('.w-media[data-alt]'), function (m) { return '<li>' + esc(m.dataset.alt) + '</li>'; }).join('');
+  box.innerHTML = '<table><tr><td>title</td><td>' + esc(d.title) + len(d.title, 65) + '</td></tr><tr><td>description</td><td>' + esc(d.description) + len(d.description, 160) +
+    '</td></tr><tr><td>запрос</td><td>' + esc(d.zapros || '–') + '</td></tr><tr><td>заголовки</td><td><ul>' + heads + '</ul></td></tr><tr><td>alt</td><td><ul>' + (alts || '<li>–</li>') +
+    '</ul></td></tr><tr><td>разметка</td><td>' + esc(d.schema || '–') + '</td></tr><tr><td>ссылки</td><td><ul>' + (d.links || []).map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('') + '</ul></td></tr></table>';
+})();
+document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href="#"]'); if (a) e.preventDefault(); });
+document.getElementById('ask-count').textContent = document.querySelectorAll('.w-ask').length;
+// Любая форма: галочка data-agree включает кнопку отправки своей формы.
+document.querySelectorAll('form').forEach(function (f) {
+  var a = f.querySelector('[data-agree]'), btn = f.querySelector('button[type="submit"], button:not([type])');
+  if (a && btn) a.addEventListener('change', function () { btn.disabled = !a.checked; });
+});
+</script>
+</body>
+</html>
