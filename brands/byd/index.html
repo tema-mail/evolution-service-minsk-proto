@@ -158,6 +158,14 @@ header.w-block > .w-logic { margin: 8px auto; max-width: var(--wrap); }
 .w-sticky .w-btn{padding:0 8px;font-size:15px;line-height:1.15;text-align:center}
 @media (min-width:761px){.w-hero>.w-media{min-height:460px}}
 @media (max-width:760px){.w-two{grid-template-columns:1fr}.w-header .w-descr{font-size:11.5px}.w-logo{font-size:13px;padding:4px 6px}.w-card h3{font-size:16px}}
+/* Виджет «Связаться с нами»: одна кнопка, окно мессенджеров; на компьютере QR, на телефоне только кнопки */
+.sv-btn{position:fixed;right:20px;bottom:24px;z-index:60;font:inherit;font-weight:600;font-size:15px;background:var(--ink,#141414);color:#fff;border:0;border-radius:999px;padding:14px 20px;min-height:48px;box-shadow:0 6px 20px rgba(0,0,0,.25);cursor:pointer}
+.sv-back{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:70;display:none;align-items:center;justify-content:center;padding:16px}.sv-back.open{display:flex}
+.sv-box{background:#fff;color:#141414;max-width:640px;width:100%;border-radius:14px;padding:28px;position:relative}.sv-x{position:absolute;right:12px;top:12px;width:44px;height:44px;border:0;background:none;font-size:22px;cursor:pointer}
+.sv-box h3{margin:0 0 6px;font-size:22px}.sv-box p{margin:0 0 18px;color:#555}.sv-in{display:grid;grid-template-columns:1fr 200px;gap:20px;align-items:center;border:1px solid #ddd;border-radius:12px;padding:18px}
+.sv-list{display:flex;flex-direction:column;gap:10px}.sv-list a{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 16px;border:1px solid #141414;border-radius:10px;text-decoration:none;color:inherit;font-weight:600}.sv-list a.on{background:#141414;color:#fff}
+.sv-qr{text-align:center;font-size:13px;color:#555}.sv-qr a{display:block;margin-top:8px}.sv-qr a[hidden]{display:none}.sv-qr .w-media{min-height:160px;aspect-ratio:1}
+@media (max-width:760px){.sv-in{grid-template-columns:1fr}.sv-qr{display:none}.sv-btn{bottom:84px;right:12px;padding:12px 16px}}
 /* Выдвижное меню */
 .mm{position:relative;border-top:1px solid var(--line)} .mm-list{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
 .mm-top,.mm-link{font:inherit;font-size:15px;background:none;border:0;padding:12px 10px;cursor:pointer;color:inherit;text-decoration:none;min-height:44px}
@@ -331,6 +339,18 @@ document.querySelectorAll('form').forEach(function (f) {
   if (a && btn) a.addEventListener('change', function () { btn.disabled = !a.checked; });
 });
 </script>
+<button class="sv-btn" type="button" aria-haspopup="dialog" data-knopka-ok="владелец 08.11.2026: одна кнопка «Связаться с нами», как YourGood">Связаться с нами</button>
+<div class="sv-back" role="dialog" aria-modal="true" aria-label="Мы на связи в мессенджерах"><div class="sv-box">
+  <button class="sv-x" type="button" aria-label="Закрыть">×</button>
+  <h3>Мы на связи в мессенджерах</h3><p>Напишите модель и что беспокоит – мастер ответит и назовёт цену.</p>
+  <div class="sv-in"><div class="sv-list">
+    <a href="#" data-qr="max" class="on">Макс</a><a href="#" data-qr="tg">Telegram</a><a href="tel:+375291358888">Позвонить +375 29 135-88-88</a>
+  </div><div class="sv-qr"><span>Удобнее с телефона? Сканируйте QR</span>
+    <a href="#" data-qrbox="max"><div class="w-media small" data-alt="QR-код для чата в Макс">QR Макс: по нажатию открывается чат</div></a>
+    <a href="#" data-qrbox="tg" hidden><div class="w-media small" data-alt="QR-код для чата в Telegram">QR Telegram: по нажатию открывается чат</div></a>
+  </div></div>
+  <p class="w-cap" style="margin:14px 0 0"><span class="w-ask">[запросить: ссылки на чаты в Макс и Telegram]</span></p>
+</div></div>
 <script>(function(){var nav=document.querySelector('.mm');if(!nav)return;
 var bu=document.querySelector('.mm-burger');if(bu)bu.addEventListener('click',function(){var o=nav.classList.toggle('open');bu.setAttribute('aria-expanded',o)});
 nav.querySelectorAll('.mm-item').forEach(function(it){var b=it.querySelector('.mm-top');
@@ -339,6 +359,11 @@ it.addEventListener('mouseenter',function(){if(window.innerWidth>760){nav.queryS
 it.addEventListener('mouseleave',function(){if(window.innerWidth>760)it.classList.remove('open')});});
 document.addEventListener('click',function(e){if(!nav.contains(e.target)&&!(bu&&bu.contains(e.target)))nav.querySelectorAll('.mm-item').forEach(function(x){x.classList.remove('open')})});
 document.addEventListener('keydown',function(e){if(e.key==='Escape')nav.querySelectorAll('.mm-item').forEach(function(x){x.classList.remove('open')})});})();</script>
+<script>(function(){var b=document.querySelector('.sv-btn'),w=document.querySelector('.sv-back');if(!b||!w)return;
+function op(){w.classList.add('open');w.querySelector('.sv-x').focus()}function cl(){w.classList.remove('open');b.focus()}
+b.addEventListener('click',op);w.querySelector('.sv-x').addEventListener('click',cl);w.addEventListener('click',function(e){if(e.target===w)cl()});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&w.classList.contains('open'))cl()});
+w.querySelectorAll('[data-qr]').forEach(function(x){x.addEventListener('mouseenter',function(){if(window.innerWidth<=760)return;w.querySelectorAll('[data-qr]').forEach(function(y){y.classList.toggle('on',y===x)});w.querySelectorAll('[data-qrbox]').forEach(function(q){q.hidden=q.dataset.qrbox!==x.dataset.qr})})});})();</script>
 <div data-vidzhety data-src="/evolution-service-minsk-proto/vidzhety-landing.json"></div>
 <script src="https://tema-mail.github.io/vidzhety/vidzhety.js"></script>
 </body>
