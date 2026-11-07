@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow"><title>Ремонт и сервис китайских электромобилей и гибридов в Минске</title><style>/* Комплект чёрно-белого прототипа (маркетолог → site-prototype).
+   Прототип показывает смысл, текст, порядок и действие – не дизайн. Цвета только серые; дизайнер делает визуал после «да» владельца.
+   Блок: <section class="w-block" data-n="1" data-name="Первый экран" data-question="вопрос клиента" data-proof="опора"> */
+:root {
+  --ink: #141414; --muted: #5f5f5f; --line: #b9b9b9; --fill: #ececec; --fill2: #f6f6f6; --paper: #ffffff;
+  --note: #fff6c8; --note-line: #c9b44a; --ask: #7a1f1f;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, Menlo, Consolas, monospace;
+  --wrap: 1180px;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.55 var(--font); }
+img { max-width: 100%; }
+a { color: var(--ink); }
+h1, h2, h3 { margin: 0; line-height: 1.2; text-wrap: balance; }
+h1 { font-size: clamp(28px, 4.2vw, 46px); }
+h2 { font-size: clamp(22px, 3vw, 32px); }
+h3 { font-size: 18px; }
+p { margin: 0; }
+.w-wrap { max-width: var(--wrap); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.w-stack { display: grid; gap: 14px; }
+.w-muted { color: var(--muted); }
+
+/* Панель прототипа: переключатели «Логика» и «Комментарии» */
+.w-bar { position: sticky; top: 0; z-index: 50; background: var(--ink); color: #fff; font: 13px/1.3 var(--mono); }
+.w-bar .w-wrap { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; padding-block: 8px; }
+.w-bar b { font-weight: 600; }
+.w-bar label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+
+/* Блок и его подпись логики */
+.w-block { border-top: 1px dashed var(--line); padding-block: 40px; position: relative; }
+.w-logic { display: none; font: 12.5px/1.45 var(--mono); background: var(--fill2); border: 1px solid var(--line); padding: 8px 10px; margin-bottom: 18px; }
+body.show-logic .w-logic { display: block; }
+.w-logic b { font-weight: 700; }
+.w-note { display: none; background: var(--note); border: 1px dashed var(--note-line); padding: 8px 10px; font-size: 13.5px; margin-top: 12px; }
+body.show-notes .w-note { display: block; }
+.w-note::before { content: "Дизайнеру: "; font-weight: 700; }
+.w-seo { display: none; font: 13px/1.5 var(--mono); background: #eef3ff; border: 1px solid #8aa0d6; padding: 12px 14px; margin: 12px auto; max-width: var(--wrap); }
+body.show-seo .w-seo { display: block; }
+.w-seo table { border-collapse: collapse; width: 100%; }
+.w-seo td { border-top: 1px solid #c9d4ee; padding: 4px 6px; vertical-align: top; }
+.w-seo td:first-child { white-space: nowrap; font-weight: 700; width: 1%; }
+.w-seo .bad { color: var(--ask); font-weight: 700; }
+.w-seo ul { margin: 0; padding-left: 18px; }
+.w-ask { color: var(--ask); font-weight: 600; background: #f7e9e9; padding: 0 4px; }
+
+/* Место под фото/видео/схему: роль, а не «картинка» */
+.w-media { background: repeating-linear-gradient(45deg, var(--fill), var(--fill) 10px, var(--fill2) 10px, var(--fill2) 20px);
+  border: 1px solid var(--line); min-height: 220px; display: grid; place-items: center; text-align: center; padding: 16px;
+  color: var(--muted); font-size: 14px; }
+.w-media::before { content: "▣ "; }
+.w-media.small { min-height: 120px; }
+
+/* Кнопки */
+.w-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 22px; border: 2px solid var(--ink);
+  background: var(--ink); color: #fff; font-weight: 600; text-decoration: none; border-radius: 6px; cursor: pointer; font-size: 16px; }
+.w-btn.ghost { background: transparent; color: var(--ink); }
+.w-btn[disabled] { opacity: .45; cursor: not-allowed; }
+.w-hint { font-size: 13px; color: var(--muted); }
+
+/* Шапка */
+.w-header .w-wrap { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; justify-content: space-between; padding-block: 12px; }
+.w-logo { border: 2px solid var(--ink); padding: 6px 10px; font-weight: 700; }
+.w-descr { font-size: 13.5px; color: var(--muted); max-width: 34ch; }
+.w-contacts-top { display: grid; gap: 2px; font-size: 14px; text-align: right; }
+.w-nav { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14.5px; border-top: 1px solid var(--line); padding-block: 8px; }
+
+/* Первый экран */
+.w-hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 32px; align-items: center; }
+.w-hero ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+.w-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+/* Сетки и карточки */
+.w-grid { display: grid; grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr)); gap: 14px; }
+.w-card { border: 1px solid var(--line); padding: 16px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.w-card .w-media { min-height: 140px; }
+.w-price { font-weight: 700; }
+
+/* Этапы */
+.w-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); gap: 14px; counter-reset: st; }
+.w-steps li { border: 1px solid var(--line); padding: 14px; counter-increment: st; display: grid; gap: 6px; }
+.w-steps li::before { content: counter(st); font-weight: 700; font-size: 22px; }
+
+/* Таблица */
+.w-table-wrap { overflow-x: auto; }
+.w-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.w-table th, .w-table td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+.w-table th { background: var(--fill2); }
+
+/* FAQ */
+.w-faq details { border: 1px solid var(--line); padding: 12px 14px; }
+.w-faq details + details { border-top: 0; }
+.w-faq summary { font-weight: 600; cursor: pointer; }
+
+/* Форма */
+.w-form { border: 2px solid var(--ink); padding: 18px; display: grid; gap: 12px; max-width: 520px; }
+.w-field { display: grid; gap: 4px; font-size: 14px; }
+.w-field input, .w-field select { min-height: 44px; border: 1px solid var(--ink); padding: 0 10px; font: inherit; background: #fff; }
+.w-check { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; }
+
+/* Полоса призыва */
+.w-cta { background: var(--fill); padding: 24px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+/* Плашка призыва между блоками: section.w-block.w-cta-strip с одной строкой предложения и кнопкой или мини-формой (карточка prizyv-mezhdu-blokami) */
+.w-block.w-cta-strip { padding-block: 16px; }
+.w-cta-strip .w-cta { padding: 14px 18px; }
+.w-cta-strip .w-cta p { margin: 0; font-weight: 600; }
+
+/* Состояние формы после отправки (карточка stranica-spasibo-sleduyushchiy-shag): видно по переключателю «После отправки» */
+.w-success { display: none; border: 2px dashed var(--ink); padding: 14px; background: var(--fill); }
+.w-success p { margin: 0 0 6px; }
+body.show-success .w-success { display: block; }
+
+/* Подвал */
+.w-footer { background: var(--fill2); border-top: 1px solid var(--line); padding-block: 28px; font-size: 14px; }
+
+/* Липкая панель действий на телефоне */
+.w-sticky { display: none; }
+header.w-block { padding-block: 0; border-top: 0; }
+header.w-block > .w-logic { margin: 8px auto; max-width: var(--wrap); }
+
+@media (max-width: 760px) {
+  .w-hide-m { display: none !important; }
+  /* Мобильная шапка: логотип, короткий дескриптор и «Меню»; звонок и мессенджеры – в липкой панели снизу */
+  .w-header .w-wrap { flex-wrap: nowrap; padding-block: 8px; gap: 10px; }
+  .w-header .w-contacts-top, .w-header .w-wrap > .w-btn, .w-nav { display: none !important; }
+  .w-header .w-descr { font-size: 12px; line-height: 1.3; }
+  .w-header > div.w-wrap:has(> .w-logo)::after { content: "☰ Меню"; margin-left: auto; border: 1px solid var(--ink); padding: 6px 10px; font-size: 13px; white-space: nowrap; }
+  .w-hero .w-media, .w-block[data-n="1"] .w-media:first-of-type { min-height: 160px; }
+  .w-bar .w-wrap { padding-block: 4px; gap: 4px 10px; font-size: 11px; }
+  .w-hero { grid-template-columns: 1fr; }
+  .w-grid { grid-template-columns: repeat(var(--cols-m, 2), minmax(0, 1fr)); }
+  .w-steps { grid-template-columns: 1fr; }
+  .w-contacts-top { text-align: left; }
+  .w-block { padding-block: 28px; }
+  .w-sticky { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    padding: 8px max(12px, env(safe-area-inset-right, 0px)) calc(8px + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+    background: #fff; border-top: 1px solid var(--line); }
+  body { padding-bottom: 72px; }
+}
+@media (max-width: 420px) { .w-grid.one-m { grid-template-columns: 1fr; } }
+</style></head><body>
+<div class="w-bar"><div class="w-wrap"><b>Прототип · Evolution Car Service · Главная · 08.11.2026</b>
+<a href="/evolution-service-minsk-proto/sitemap/">Карта сайта</a>
+<label><input type="checkbox" id="t-logic"> Логика блоков</label><label><input type="checkbox" id="t-notes"> Комментарии дизайнеру</label>
+<label><input type="checkbox" id="t-seo"> SEO страницы</label><label><input type="checkbox" id="t-success"> После отправки</label>
+<span>Меток «запросить»: <b id="ask-count">0</b></span></div></div>
+<script type="application/json" id="w-seo">{"title":"Ремонт и сервис китайских электромобилей и гибридов в Минске","description":"Ремонт и ТО китайских электромобилей и гибридов от 2022 года в Минске: батареи, диагностика, русификация, кондиционер, Pandora. Машерова 15/4.","h1":"Сервис китайских электромобилей и гибридов в Минске","zapros":"ремонт электромобилей минск (153); обслуживание электромобилей (52); сервис электромобилей (23); ремонт китайских автомобилей (21); ремонт гибридов (16)","schema":"AutoRepair с @id (адрес, телефон, часы), WebSite","links":["/brands – марки","/services – услуги","/brands/geely – сервис Geely","/brands/byd – сервис BYD","/brands/deepal – сервис Deepal","/brands/dongfeng – сервис Dongfeng","/brands/zeekr – сервис Zeekr","/brands/voyah – сервис Voyah"]}</script><div class="w-seo" id="w-seo-box"></div>
+<header class="w-header w-block" data-n="0" data-name="Шапка" data-question="Здесь берут мою китайскую машину? Как связаться?" data-proof="специализация в дескрипторе, адрес, телефон">
+<div class="w-wrap"><a class="w-logo" href="/evolution-service-minsk-proto/">Evolution Car Service</a>
+<span class="w-descr">Сервис китайских электромобилей и гибридов от 2022 года в Минске</span>
+<span class="w-contacts-top"><a href="tel:+375291358888">+375 29 135-88-88</a><span class="w-muted">Минск, проспект Машерова, 15/4 · <span class="w-ask">[запросить: часы работы]</span></span></span>
+<a class="w-btn ghost" href="#zayavka">Узнать цену работ</a></div>
+<nav class="w-wrap w-nav"><a href="/evolution-service-minsk-proto/brands">Марки</a><a href="/evolution-service-minsk-proto/services">Услуги</a><a href="/evolution-service-minsk-proto/prices">Цены</a><a href="/evolution-service-minsk-proto/works">Работы и отзывы</a><a href="/evolution-service-minsk-proto/blog">Блог</a><a href="/evolution-service-minsk-proto/about">О сервисе</a><a href="/evolution-service-minsk-proto/contacts">Контакты</a></nav>
+</header>
+<main>
+<section class="w-block" data-n="1" data-name="Первый экран" data-question="Куда я попал и решат ли здесь мою задачу?" data-next="Берёте мою машину?" data-proof="марка и модель в заголовке, город, цена и запись"><div class="w-wrap w-stack"><div class="w-hero"><div class="w-stack"><h1>Сервис китайских электромобилей и гибридов в Минске</h1><p>Берём только китайские электромобили и гибриды от 2022 года: ремонт, ТО, тяговые батареи, диагностика, русификация и приложения.</p>
+<ul><li><b>Только свои машины</b> – Zeekr, Voyah, Lixiang, BYD и другие китайские марки</li><li><b>Цена до начала работ</b> – сначала согласуем список и стоимость</li><li><b>Адрес</b> – Минск, проспект Машерова, 15/4</li></ul>
+<div class="w-actions"><a class="w-btn" href="#zayavka">Узнать цену работ</a><a class="w-btn ghost" href="tel:+375291358888">Позвонить</a></div>
+<p class="w-hint">Мастер перезвонит, уточнит модель и пробег и назовёт цену до записи.</p></div>
+<div class="w-media" data-alt="Сервис китайских электромобилей в Минске">WOW-сцена первого экрана: машина и батарея в разрезе. Уровень анимации ждёт ответа заказчика</div></div></div></section>
+<p class="w-wrap w-note">WOW: сцена только на первом экране, не мешает кнопке и не грузит телефон. Текст и кнопка видны сразу, анимация откладывается до загрузки страницы.</p>
+<section class="w-block" data-n="2" data-name="Марки" data-question="Берёте мою машину?" data-next="Вы делаете то, что мне нужно?" data-proof="марки и модели, парк av.by, спрос Wordstat"><div class="w-wrap w-stack"><h2>Найдите свою марку и модель</h2><div class="w-grid" style="--cols:4;--cols-m:2"><article class="w-card"><div class="w-media small" data-alt="Сервис Geely">Фото Geely в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/geely">Geely</a></h3><p><a href="/evolution-service-minsk-proto/brands/geely/ex2">EX2</a>, <a href="/evolution-service-minsk-proto/brands/geely/monjaro">Monjaro</a>, <a href="/evolution-service-minsk-proto/brands/geely/ex5">EX5</a>, <a href="/evolution-service-minsk-proto/brands/geely/atlas-pro">Atlas Pro</a>, <a href="/evolution-service-minsk-proto/brands/geely/galaxy-starship-7">Galaxy Starship 7</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис BYD">Фото BYD в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/byd">BYD</a></h3><p><a href="/evolution-service-minsk-proto/brands/byd/song-plus">Song Plus</a>, <a href="/evolution-service-minsk-proto/brands/byd/han">Han</a>, <a href="/evolution-service-minsk-proto/brands/byd/qin-plus">Qin Plus</a>, <a href="/evolution-service-minsk-proto/brands/byd/yuan-up">Yuan Up</a>, <a href="/evolution-service-minsk-proto/brands/byd/e2">e2</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис Deepal">Фото Deepal в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/deepal">Deepal</a></h3><p><a href="/evolution-service-minsk-proto/brands/deepal/s05">S05</a>, <a href="/evolution-service-minsk-proto/brands/deepal/s07-s7">S07 (S7)</a>, <a href="/evolution-service-minsk-proto/brands/deepal/g318">G318</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис Dongfeng">Фото Dongfeng в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/dongfeng">Dongfeng</a></h3><p><a href="/evolution-service-minsk-proto/brands/dongfeng/box">BOX</a>, <a href="/evolution-service-minsk-proto/brands/dongfeng/vigo">VIGO</a>, <a href="/evolution-service-minsk-proto/brands/dongfeng/mage">Mage</a>, <a href="/evolution-service-minsk-proto/brands/dongfeng/aeolus-l7">Aeolus L7</a>, <a href="/evolution-service-minsk-proto/brands/dongfeng/aeolus-huge">Aeolus Huge</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис Zeekr">Фото Zeekr в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/zeekr">Zeekr</a></h3><p><a href="/evolution-service-minsk-proto/brands/zeekr/001">001</a>, <a href="/evolution-service-minsk-proto/brands/zeekr/7x">7X</a>, <a href="/evolution-service-minsk-proto/brands/zeekr/8x">8X</a>, <a href="/evolution-service-minsk-proto/brands/zeekr/9x">9X</a>, <a href="/evolution-service-minsk-proto/brands/zeekr/007">007</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис Voyah">Фото Voyah в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/voyah">Voyah</a></h3><p><a href="/evolution-service-minsk-proto/brands/voyah/free">Free</a>, <a href="/evolution-service-minsk-proto/brands/voyah/courage">Courage</a>, <a href="/evolution-service-minsk-proto/brands/voyah/passion">Passion</a>, <a href="/evolution-service-minsk-proto/brands/voyah/dream">Dream</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис Changan">Фото Changan в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/changan">Changan</a></h3><p><a href="/evolution-service-minsk-proto/brands/changan/uni-k">Uni-K</a>, <a href="/evolution-service-minsk-proto/brands/changan/uni-l">UNI-L</a>, <a href="/evolution-service-minsk-proto/brands/changan/qiyuan-q05">Qiyuan Q05</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис Hongqi">Фото Hongqi в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/hongqi">Hongqi</a></h3><p><a href="/evolution-service-minsk-proto/brands/hongqi/e-qm5">E-QM5</a>, <a href="/evolution-service-minsk-proto/brands/hongqi/e-hs9">E-HS9</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис Smart">Фото Smart в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/smart">Smart</a></h3><p><a href="/evolution-service-minsk-proto/brands/smart/3">#3</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис FAW">Фото FAW в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/faw">FAW</a></h3><p><a href="/evolution-service-minsk-proto/brands/faw/nat">NAT</a>, <a href="/evolution-service-minsk-proto/brands/faw/xiaoma">Xiaoma</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис Lixiang">Фото Lixiang в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/lixiang">Lixiang</a></h3><p><a href="/evolution-service-minsk-proto/brands/lixiang/l6">L6</a>, <a href="/evolution-service-minsk-proto/brands/lixiang/l7">L7</a>, <a href="/evolution-service-minsk-proto/brands/lixiang/l9">L9</a>, <a href="/evolution-service-minsk-proto/brands/lixiang/i8">i8</a>, <a href="/evolution-service-minsk-proto/brands/lixiang/i6">i6</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис Xiaomi">Фото Xiaomi в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/xiaomi">Xiaomi</a></h3><p><a href="/evolution-service-minsk-proto/brands/xiaomi/su7">SU7</a>, <a href="/evolution-service-minsk-proto/brands/xiaomi/yu7">YU7</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис GAC">Фото GAC в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/gac">GAC</a></h3><p><a href="/evolution-service-minsk-proto/brands/gac/aion-y">Aion Y</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис Leapmotor">Фото Leapmotor в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/leapmotor">Leapmotor</a></h3><p><a href="/evolution-service-minsk-proto/brands/leapmotor/a10">A10</a>, <a href="/evolution-service-minsk-proto/brands/leapmotor/c11">C11</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис Avatr">Фото Avatr в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/avatr">Avatr</a></h3><p><a href="/evolution-service-minsk-proto/brands/avatr/07">07</a>, <a href="/evolution-service-minsk-proto/brands/avatr/11">11</a>, <a href="/evolution-service-minsk-proto/brands/avatr/12">12</a>, <a href="/evolution-service-minsk-proto/brands/avatr/06">06</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис Lynk &amp; Co">Фото Lynk &amp; Co в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/lynk-co">Lynk &amp; Co</a></h3><p><a href="/evolution-service-minsk-proto/brands/lynk-co/900">900</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис Fangchengbao">Фото Fangchengbao в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/fangchengbao">Fangchengbao</a></h3><p><a href="/evolution-service-minsk-proto/brands/fangchengbao/titanium-3">Titanium 3</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис Aito">Фото Aito в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/aito">Aito</a></h3><p><a href="/evolution-service-minsk-proto/brands/aito/m7">M7</a></p></article><article class="w-card"><div class="w-media small" data-alt="Сервис SERES">Фото SERES в боксе</div><h3><a href="/evolution-service-minsk-proto/brands/seres">SERES</a></h3><p><a href="/evolution-service-minsk-proto/brands/seres/5">5</a></p></article></div><p>Не нашли машину, но она китайская, электро или гибрид и от 2022 года? <a href="#zayavka">Напишите модель</a>, скажем, возьмём ли.</p></div></section>
+<section class="w-block" data-n="3" data-name="Услуги" data-question="Вы делаете то, что мне нужно?" data-next="Почему сюда, а не к дилеру или в обычный автосервис?" data-proof="группы услуг со ссылками"><div class="w-wrap w-stack"><h2>Что ремонтируем на китайских электромобилях и гибридах</h2><div class="w-grid" style="--cols:3;--cols-m:2"><article class="w-card"><h3><a href="/evolution-service-minsk-proto/services/maintenance">Техобслуживание</a></h3><p>Плановое ТО, жидкости, фильтры и расходники по регламенту производителя.</p></article><article class="w-card"><h3><a href="/evolution-service-minsk-proto/services/diagnostics">Диагностика</a></h3><p>Компьютерная диагностика, проверка батареи, силовой электроники и ДВС-генератора.</p></article><article class="w-card"><h3><a href="/evolution-service-minsk-proto/services/brakes">Тормозная система</a></h3><p>Колодки, диски, суппорты и проверка тормозов с учётом рекуперации.</p></article><article class="w-card"><h3><a href="/evolution-service-minsk-proto/services/suspension">Подвеска и пневмоподвеска</a></h3><p>Ремонт пневмоподвески, амортизаторы, рычаги, сход-развал.</p></article><article class="w-card"><h3><a href="/evolution-service-minsk-proto/services/steering">Рулевое управление</a></h3><p>Рулевая рейка, электроусилитель, тяги и наконечники.</p></article><article class="w-card"><h3><a href="/evolution-service-minsk-proto/services/electrical">Электрика и зарядка</a></h3><p>Проводка, блоки управления, зарядный порт, свет, аккумулятор 12 В.</p></article><article class="w-card"><h3><a href="/evolution-service-minsk-proto/services/climate">Кондиционер и климат</a></h3><p>Заправка, электрокомпрессор, тепловой насос, чистка системы.</p></article><article class="w-card"><h3><a href="/evolution-service-minsk-proto/services/software">Русификация и ПО</a></h3><p>Русский язык, приложения, обновления, связь и мастер-аккаунт.</p></article><article class="w-card"><h3><a href="/evolution-service-minsk-proto/services/pandora-alarm">Сигнализация</a></h3><p>Охранные системы Pandora для китайских электромобилей и гибридов. StarLine не ставим.</p></article><article class="w-card"><h3><a href="/evolution-service-minsk-proto/services/hv-battery">Высоковольтная батарея</a></h3><p>Диагностика и ремонт тяговых батарей электромобилей и гибридов.</p></article><article class="w-card"><h3><a href="/evolution-service-minsk-proto/services/parts-order">Запчасти из Китая</a></h3><p>Подбор, заказ и доставка запчастей, стёкол и кузовных элементов напрямую у поставщиков.</p></article><article class="w-card"><h3><a href="/evolution-service-minsk-proto/services/body">Кузов и оборудование</a></h3><p>Фаркоп, пороги, стёкла и проверка перед покупкой.</p></article></div></div></section>
+<section class="w-block w-cta-strip" data-n="3а" data-name="Плашка призыва" data-question="Мне хватает – что сделать сейчас?" data-proof="предложение по блоку выше"><div class="w-wrap w-stack"><div class="w-cta"><p>Не знаете, что с машиной? Начните с диагностики: по её итогам назовём цену ремонта.</p><a class="w-btn" href="#zayavka">Записаться на диагностику</a></div></div></section>
+<section class="w-block" data-n="4" data-name="Почему сюда" data-question="Почему сюда, а не к дилеру или в обычный автосервис?" data-next="Что будет и в каком порядке?" data-proof="специализация, оборудование, запчасти, гарантия"><div class="w-wrap w-stack"><h2>Почему владельцы китайских машин едут к нам</h2><div class="w-grid" style="--cols:3;--cols-m:2"><article class="w-card"><h3>Только китайские электромобили и гибриды от 2022 года</h3><p>Не берём всё подряд: каждый день работаем с батареями, гибридными установками и электроникой этих машин.</p></article><article class="w-card"><h3>Высоковольтная система</h3><p>Каждый мастер знает высоковольтную систему питания и работает с тяговыми батареями. <span class="w-ask">[запросить: допуски и обучение мастеров: что показать]</span></p></article><article class="w-card"><h3>Дилерское оборудование</h3><p>Сканеры под китайские марки видят блоки, которые не видит универсальный сканер. <span class="w-ask">[запросить: какие именно сканеры, фото]</span></p></article><article class="w-card"><h3>Запчасти напрямую из Китая</h3><p>Заказываем сами у поставщиков. <span class="w-ask">[запросить: что в наличии, сроки привоза]</span></p></article><article class="w-card"><h3>Цена до начала работ</h3><p>Сначала согласуем список работ и стоимость. Без согласования ничего не меняем.</p></article><article class="w-card"><h3>Гарантия на работы и прошивки</h3><p><span class="w-ask">[запросить: срок гарантии на работы, запчасти и прошивки]</span></p></article></div>
+<p class="w-note">Каждую карточку подкрепить фото: сканер, мастер у батареи, склад. Без подтверждения заказчика карточку убрать.</p></div></section>
+<section class="w-block" data-n="5" data-name="Этапы" data-question="Что будет и в каком порядке?" data-next="Здесь уже чинили такие машины, как моя?" data-proof="регламент работы"><div class="w-wrap w-stack"><h2>Как проходит визит: от звонка до выдачи</h2><ol class="w-steps" style="--cols:5"><li><b>Шаг 1</b><span>Заявка или звонок: уточняем модель, пробег и что беспокоит</span></li><li><b>Шаг 2</b><span>Называем цену и свободное время</span></li><li><b>Шаг 3</b><span>Диагностика и согласование работ</span></li><li><b>Шаг 4</b><span>Ремонт с фото и отчётом</span></li><li><b>Шаг 5</b><span>Выдача машины и гарантия</span></li></ol></div></section>
+<section class="w-block" data-n="6" data-name="Работы и отзывы" data-question="Здесь уже чинили такие машины, как моя?" data-next="Что меня ещё останавливает?" data-proof="фото работ с моделью и отзывы с карт"><div class="w-wrap w-stack"><h2>Работы по китайским машинам: что уже чинили</h2><div class="w-grid" style="--cols:3;--cols-m:2"><article class="w-card"><div class="w-media small" data-alt="Ремонт китайским машинам в сервисе">Фото работы: машина на подъёмнике, модель видна, госномер размыт по рамке</div><h3><span class="w-ask">[запросить: модель, что сделали]</span></h3><p><span class="w-ask">[запросить: задача клиента, срок, цена]</span></p></article><article class="w-card"><div class="w-media small" data-alt="Ремонт китайским машинам в сервисе">Фото работы: машина на подъёмнике, модель видна, госномер размыт по рамке</div><h3><span class="w-ask">[запросить: модель, что сделали]</span></h3><p><span class="w-ask">[запросить: задача клиента, срок, цена]</span></p></article><article class="w-card"><div class="w-media small" data-alt="Ремонт китайским машинам в сервисе">Фото работы: машина на подъёмнике, модель видна, госномер размыт по рамке</div><h3><span class="w-ask">[запросить: модель, что сделали]</span></h3><p><span class="w-ask">[запросить: задача клиента, срок, цена]</span></p></article></div>
+<p><span class="w-ask">[запросить: рейтинг и число отзывов на Яндекс Картах и 2ГИС]</span></p></div></section>
+<section class="w-block" data-n="7" data-name="Вопросы" data-question="Что меня ещё останавливает?" data-next="Как записаться и сколько это будет стоить?" data-proof="ответы на частые вопросы владельцев"><div class="w-wrap w-stack"><div class="w-faq w-stack"><h2>Что спрашивают владельцы китайских машин перед записью</h2><details><summary>Берёте бензиновые китайские машины?</summary><p>Нет. Только электромобили и гибриды от 2022 года: с ними нужны другое оборудование и знание высоковольтной системы.</p></details><details><summary>Вы официальный дилер?</summary><p>Нет, мы независимый сервис. Для привозных машин это часто единственный вариант.</p></details><details><summary>Сделаете русификацию и приложения?</summary><p>Да: язык, приложения, интернет, разъём под SIM.</p></details><details><summary>Есть эвакуатор?</summary><p><span class="w-ask">[запросить: эвакуатор или партнёр]</span></p></details></div></div></section>
+<section class="w-block" id="zayavka" data-n="8" data-name="Заявка" data-question="Как записаться и сколько это будет стоить?" data-proof="перезвон с ценой до записи">
+<div class="w-wrap"><form class="w-form" onsubmit="event.preventDefault()">
+<h2>Опишите машину и задачу: назовём цену до записи</h2>
+<label class="w-field">Имя<input autocomplete="name"></label>
+<label class="w-field">Телефон<input inputmode="tel" placeholder="+375 (__) ___-__-__"></label>
+<label class="w-field">Модель и год<input placeholder="Zeekr 001, 2024"></label>
+<label class="w-field">Что нужно сделать<input placeholder="Например: ТО, стук спереди, русификация"></label>
+<label class="w-check"><input type="checkbox" data-agree> <span>Согласен на <a href="#">обработку персональных данных</a></span></label>
+<button class="w-btn" type="submit" disabled>Записаться</button>
+<p class="w-hint">Мастер перезвонит, уточнит пробег и симптомы и назовёт цену и свободное время.</p>
+<div class="w-success"><p><b>Заявка принята.</b></p><p>Перезвоним <span class="w-ask">[запросить: срок ответа, часы работы]</span></p>
+<p>Срочно – <a href="tel:+375291358888">позвонить</a> или написать в мессенджер</p><p>Подготовьте: пробег, VIN или фото СТС, фото ошибки на экране, если есть.</p></div>
+</form></div></section>
+</main>
+<footer class="w-footer"><div class="w-wrap w-stack">
+<b>Evolution Car Service – сервис китайских электромобилей и гибридов в Минске</b>
+<span>Минск, проспект Машерова, 15/4 · <a href="tel:+375291358888">+375 29 135-88-88</a> · <span class="w-ask">[запросить: юрлицо, УНП, почтовый адрес]</span></span>
+<span><a href="/evolution-service-minsk-proto/brands">Марки</a> · <a href="/evolution-service-minsk-proto/services">Услуги</a> · <a href="/evolution-service-minsk-proto/prices">Цены</a> · <a href="/evolution-service-minsk-proto/contacts">Контакты</a> · <a href="/evolution-service-minsk-proto/sitemap">Карта сайта</a></span>
+<span><a href="/evolution-service-minsk-proto/privacy-policy">Политика обработки персональных данных</a> · <a href="/evolution-service-minsk-proto/terms-of-use">Пользовательское соглашение</a> · Cookie – окно при первом заходе</span>
+<span class="w-muted">Не является официальным дилером марок. Товарные знаки принадлежат владельцам.</span>
+</div></footer>
+<div class="w-sticky"><a class="w-btn" href="tel:+375291358888">Позвонить</a><a class="w-btn ghost" href="#zayavka">Узнать цену</a></div>
+<script>// Переключатели прототипа и подпись логики над каждым блоком (по умолчанию скрыто).
+document.querySelectorAll('.w-block').forEach(function (b) {
+  var d = b.dataset, el = document.createElement('div');
+  el.className = 'w-logic';
+  el.innerHTML = '<b>Блок ' + (d.n || '?') + ' · ' + (d.name || '') + '</b><br>Вопрос клиента: ' + (d.question || '–') + '<br>Опора: ' + (d.proof || '–');
+  if (b.tagName === 'HEADER') b.prepend(el); else (b.querySelector('.w-wrap') || b).prepend(el);
+});
+document.getElementById('t-logic').addEventListener('change', function (e) { document.body.classList.toggle('show-logic', e.target.checked); });
+document.getElementById('t-notes').addEventListener('change', function (e) { document.body.classList.toggle('show-notes', e.target.checked); });
+document.getElementById('t-seo').addEventListener('change', function (e) { document.body.classList.toggle('show-seo', e.target.checked); });
+document.getElementById('t-success').addEventListener('change', function (e) { document.body.classList.toggle('show-success', e.target.checked); });
+(function () {
+  var src = document.getElementById('w-seo'), box = document.getElementById('w-seo-box');
+  if (!src || !box) return;
+  var d = JSON.parse(src.textContent), esc = function (t) { return String(t).replace(/[&<>]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]; }); };
+  var len = function (t, max) { return ' <span class="' + (t.length > max ? 'bad' : '') + '">(' + t.length + ' / ' + max + ')</span>'; };
+  var heads = [].map.call(document.querySelectorAll('main h1, main h2, header h1'), function (h) { return '<li>' + h.tagName + ' – ' + esc(h.textContent.trim()) + '</li>'; }).join('');
+  var alts = [].map.call(document.querySelectorAll('.w-media[data-alt]'), function (m) { return '<li>' + esc(m.dataset.alt) + '</li>'; }).join('');
+  box.innerHTML = '<table><tr><td>title</td><td>' + esc(d.title) + len(d.title, 65) + '</td></tr><tr><td>description</td><td>' + esc(d.description) + len(d.description, 160) +
+    '</td></tr><tr><td>запрос</td><td>' + esc(d.zapros || '–') + '</td></tr><tr><td>заголовки</td><td><ul>' + heads + '</ul></td></tr><tr><td>alt</td><td><ul>' + (alts || '<li>–</li>') +
+    '</ul></td></tr><tr><td>разметка</td><td>' + esc(d.schema || '–') + '</td></tr><tr><td>ссылки</td><td><ul>' + (d.links || []).map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('') + '</ul></td></tr></table>';
+})();
+document.getElementById('ask-count').textContent = document.querySelectorAll('.w-ask').length;
+// Любая форма: галочка data-agree включает кнопку отправки своей формы.
+document.querySelectorAll('form').forEach(function (f) {
+  var a = f.querySelector('[data-agree]'), btn = f.querySelector('button[type="submit"], button:not([type])');
+  if (a && btn) a.addEventListener('change', function () { btn.disabled = !a.checked; });
+});
+</script></body></html>
