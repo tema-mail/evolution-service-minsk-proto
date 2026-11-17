@@ -42,6 +42,9 @@
     "on": "time",
     "s": 40
    },
+   "target": {
+    "dateTo": "2026-12-01"
+   },
    "priority": 3,
    "mobileAs": "bar",
    "content": {

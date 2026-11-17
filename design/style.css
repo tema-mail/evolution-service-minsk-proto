@@ -81,6 +81,32 @@ span.circ { opacity: .45; cursor: default; } /* ссылки на мессенд
 .mnu a { display: flex; justify-content: space-between; align-items: center; min-height: 48px; padding: 0 14px; border-radius: 8px; font-weight: 500; font-size: 16px; color: var(--ink2); }
 .mnu a:hover { background: var(--bg); }
 .mnu a::after { content: '›'; color: var(--muted); font-size: 20px; }
+/* Меню 9А (18.11): «Услуги ▾» и «Марки ▾» в шапке от 1180 px, ниже – окно «Меню» с гармошками */
+.mnu { max-height: calc(100vh - 110px); overflow-y: auto; }
+.mnu__g summary { display: flex; justify-content: space-between; align-items: center; min-height: 48px; padding: 0 14px; border-radius: 8px; font-weight: 500; font-size: 16px; color: var(--ink2); cursor: pointer; list-style: none; }
+.mnu__g summary::-webkit-details-marker { display: none; }
+.mnu__g summary::after { content: '›'; color: var(--muted); font-size: 20px; transition: transform .2s; }
+.mnu__g[open] summary::after { transform: rotate(90deg); }
+.mnu__g b { display: block; padding: 10px 14px 2px 26px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.mnu__g a { padding-left: 26px; font-size: 15px; }
+.hnav { display: none; align-items: center; gap: 2px; margin-right: 6px; }
+.hnav__it { position: relative; }
+.hnav__b, .hnav__a { display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; border: 0; border-radius: 6px; background: none; color: #fff; font: inherit; font-size: 15px; font-weight: 500; cursor: pointer; white-space: nowrap; }
+.hnav__b::after { content: ''; width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .2s; }
+.hnav__it.open .hnav__b::after { transform: translateY(2px) rotate(-135deg); }
+.hnav__b:hover, .hnav__a:hover, .hnav__it.open .hnav__b { background: rgba(255,255,255,.12); }
+.dd { display: none; position: absolute; top: calc(100% + 13px); left: 50%; transform: translateX(-50%); width: 620px; padding: 20px 22px; border-radius: 12px; background: #fff; color: var(--ink2); box-shadow: 0 18px 40px rgba(0,0,0,.18); }
+.dd--br { width: 680px; }
+.hnav__it.open .dd { display: block; }
+.dd__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; }
+.dd__g b { display: block; margin-bottom: 4px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.dd__g a { display: block; padding: 6px 0; font-size: 15px; color: var(--ink2); }
+.dd__g a:hover, .dd__all:hover { color: var(--green2); text-decoration: underline; }
+.dd__brand { font-weight: 600; }
+.dd__g span { display: flex; flex-wrap: wrap; gap: 0 14px; }
+.dd__g span a { padding: 2px 0; font-size: 14px; color: var(--muted); }
+.dd__all { display: block; margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-weight: 600; color: var(--green); }
+@media (min-width: 1180px) { .hnav { display: flex; } .menu-btn { display: none; } }
 
 /* ── Первый экран (макет 1:1082–1:1089): фото на всю ширину, затемнение слева */
 .hero { position: relative; min-height: 810px; display: flex; align-items: center; color: #fff; overflow: hidden; background: #111; }

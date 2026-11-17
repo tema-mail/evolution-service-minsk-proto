@@ -3,6 +3,22 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
 
+  // Акция с датой (data-akciya-do): после даты по Минску блок убирается сам – решение 1А, 18.11
+  var dnow = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Minsk' });
+  $$('[data-akciya-do]').forEach(function (e) { if (dnow > e.getAttribute('data-akciya-do')) (e.closest('section') || e).remove(); });
+
+  // Выпадающие «Услуги» и «Марки» в шапке (9А): по клику, закрываются вторым кликом, кликом мимо и Escape
+  var dds = $$('.hnav__it');
+  function ddClose(except) { dds.forEach(function (it) { if (it !== except) { it.classList.remove('open'); $('.hnav__b', it).setAttribute('aria-expanded', false); } }); }
+  dds.forEach(function (it) {
+    $('.hnav__b', it).addEventListener('click', function (e) {
+      e.stopPropagation(); ddClose(it);
+      var o = it.classList.toggle('open'); this.setAttribute('aria-expanded', o);
+    });
+  });
+  document.addEventListener('click', function (e) { if (!e.target.closest('.hnav__it')) ddClose(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') ddClose(); });
+
   // Меню на узких экранах
   var hdr = $('.hdr'), burger = $('.menu-btn');
   if (burger) burger.addEventListener('click', function () {
