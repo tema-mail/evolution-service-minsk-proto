@@ -67,6 +67,9 @@ figure.w-stack { gap: 8px; }
 .w-table td:last-child:not(:first-child) { min-width: 110px; }
 .w-table td:first-child:not(:last-child) { font-weight: 500; }
 .w-stack > .w-table { border-radius: var(--r); background: #fff; overflow: hidden; }
+/* Подпись версии над таблицей регламента (гибрид / электро у BYD Song Plus, Qin Plus) */
+.w-table-cap { font-size: 18px; margin-top: 12px; }
+.w-table-cap + .w-table-wrap { margin-top: -8px; }
 .w-more { display: none; }
 
 /* ── Шаги */
