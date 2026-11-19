@@ -105,6 +105,9 @@ body.show-seo .w-seo { display: block; }
 .w-form { border: 2px solid var(--ink); padding: 18px; display: grid; gap: 12px; max-width: 520px; }
 .w-field { display: grid; gap: 4px; font-size: 14px; }
 .w-field input, .w-field select { min-height: 44px; border: 1px solid var(--ink); padding: 0 10px; font: inherit; background: #fff; }
+/* длинный вариант в select не распирает форму на телефоне (18.11.2026: вылезало на 8 px при 390) */
+.w-form > *, .w-field { min-width: 0; }
+.w-field input, .w-field select { width: 100%; max-width: 100%; }
 .w-check { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; }
 
 /* Полоса призыва */
@@ -223,10 +226,10 @@ header.w-block > .w-logic { margin: 8px auto; max-width: var(--wrap); }
     <p class="w-hint">Цену называем до начала работ. Пр-т Машерова, 15/4, Минск · <a href="#">Telegram</a> · <a href="#">Макс</a></p></div>
   <div class="w-media" data-alt="техническое обслуживание (ТО) Lixiang в Минске">Живое фото: ТО на Lixiang в техцентре, результат крупно</div></div></div>
 </section>
-<section class="w-block" data-n="2" data-name="Модели" data-question="Делаете на моей Lixiang?" data-next="Чем отличается работа на разных Lixiang?" data-proof="модели марки с ценой от">
+<section class="w-block" data-n="2" data-name="Модели" data-question="Делаете на моей Lixiang?" data-next="Чем отличается работа на разных Lixiang?" data-proof="модели марки с ценой от" data-mob="vniz">
   <div class="w-wrap w-stack"><h2>ТО Lixiang: цены по моделям</h2><div class="w-table-wrap"><table class="w-table"><tr><th>Модель</th><th>Цена от, BYN</th><th>Время</th></tr><tr><td><a href="/evolution-service-minsk-proto/brands/lixiang/l6/">Lixiang L6</a></td><td><span class="w-ask">[запросить: цена]</span></td><td><span class="w-ask">[запросить: время]</span></td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/lixiang/l7/">Lixiang L7</a></td><td><span class="w-ask">[запросить: цена]</span></td><td><span class="w-ask">[запросить: время]</span></td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/lixiang/l9/">Lixiang L9</a></td><td><span class="w-ask">[запросить: цена]</span></td><td><span class="w-ask">[запросить: время]</span></td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/lixiang/l8/">Lixiang L8</a></td><td><span class="w-ask">[запросить: цена]</span></td><td><span class="w-ask">[запросить: время]</span></td></tr></table></div></div>
 </section>
-<section class="w-block" data-n="2" data-name="Отличия моделей" data-question="Чем отличается работа на разных Lixiang?" data-next="Мне это нужно сейчас?" data-proof="паспорта моделей марки">
+<section class="w-block" data-n="2" data-name="Отличия моделей" data-question="Чем отличается работа на разных Lixiang?" data-next="Мне это нужно сейчас?" data-proof="паспорта моделей марки" data-mob="vniz">
   <div class="w-wrap w-stack"><h2>ТО Lixiang: чем отличаются модели</h2><div class="w-table-wrap"><table class="w-table"><tr><th>Модель</th><th>Что важно для этой работы</th></tr><tr><td><a href="/evolution-service-minsk-proto/brands/lixiang/l6/">Lixiang L6</a></td><td><b>Печка плохо греет зимой.</b> Возможная причина – воздушная пробка в контуре отопления от двигателя. Прокачиваем контур или меняем антифриз.</td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/lixiang/l7/">Lixiang L7</a></td><td>10 000 км: моторное масло генератора, масляный фильтр<br>20 000 км: моторное масло, масляный фильтр, воздушный фильтр, салонный фильтр</td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/lixiang/l9/">Lixiang L9</a></td><td>10 000 км: моторное масло генератора, масляный фильтр<br>20 000 км: большое ТО: масло, масляный фильтр и дополнительные работы</td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/lixiang/l8/">Lixiang L8</a></td><td><span class="w-ask">[запросить: особенность модели]</span></td></tr></table></div></div>
 </section>
 <section class="w-block" data-n="2б" data-name="Когда нужна" data-question="Мне это нужно сейчас?" data-next="Что именно получу?" data-proof="паспорт работы: признаки">

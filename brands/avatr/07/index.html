@@ -105,6 +105,9 @@ body.show-seo .w-seo { display: block; }
 .w-form { border: 2px solid var(--ink); padding: 18px; display: grid; gap: 12px; max-width: 520px; }
 .w-field { display: grid; gap: 4px; font-size: 14px; }
 .w-field input, .w-field select { min-height: 44px; border: 1px solid var(--ink); padding: 0 10px; font: inherit; background: #fff; }
+/* длинный вариант в select не распирает форму на телефоне (18.11.2026: вылезало на 8 px при 390) */
+.w-form > *, .w-field { min-width: 0; }
+.w-field input, .w-field select { width: 100%; max-width: 100%; }
 .w-check { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; }
 
 /* Полоса призыва */
@@ -249,7 +252,7 @@ header.w-block > .w-logic { margin: 8px auto; max-width: var(--wrap); }
 </form></div></div>
 </section>
 
-<section class="w-block" data-n="6" data-name="Особенности модели" data-question="Какие проблемы бывают у Avatr 07?" data-next="Почему сюда, а не к дилеру или в обычный сервис?" data-proof="паспорт модели: устройство, слабые места, отзывы производителя">
+<section class="w-block" data-n="6" data-name="Особенности модели" data-question="Какие проблемы бывают у Avatr 07?" data-next="Почему сюда, а не к дилеру или в обычный сервис?" data-proof="паспорт модели: устройство, слабые места, отзывы производителя" data-mob="akkordeon">
   <div class="w-wrap w-stack"><h2 class="w-kicker">Особенности сервиса Avatr 07</h2><p class="w-title">Что важно знать про Avatr 07</p><ul><li>Электромобиль на 800 В и версия с генератором; в обоих один мотор сзади или два мотора</li><li>Батарея 82,16 кВт·ч (электромобиль, CATL Shenxing LFP)</li><li>Батарея 39,05 кВт·ч (версия с генератором; в 2026 модельном году только задний привод)</li><li>Батарея 52 кВт·ч (версия с генератором 2026 модельного года, CATL Freevoy)</li><li>Двигатель-генератор: бензиновый 1,5 л турбо, 115 кВт, только заряжает батарею</li><li>Привод задний или полный (передний мотор 188 кВт у электромобиля, 131 кВт у версии с генератором)</li><li>Экран 35,4 дюйма 4K сверху и сенсорный 15,6 дюйма, опционально электронные зеркала. На запуске HarmonyOS 4.0 и Huawei ADS 3.0, в 2026 модельном году HarmonyOS 5 и ADS 4</li></ul><div class="w-grid" style="--cols:3;--cols-m:1"><article class="w-card"><h3><span class="w-ask">[запросить: неисправность Avatr 07 из практики]</span></h3><p><span class="w-ask">[запросить: признаки и что делали]</span></p></article><article class="w-card"><div class="w-media small" data-alt="ремонт Avatr 07 из практики сервиса">Случай из практики: снятая деталь Avatr 07 или экран ошибки крупно</div><h3>Из нашей практики</h3><p><span class="w-ask">[запросить: что чинили на Avatr 07 в Минске]</span></p></article></div></div>
 </section>
 <section class="w-block" data-n="7" data-name="Почему сюда" data-question="Почему сюда, а не к дилеру или в обычный сервис?" data-next="Вы уже работали с такими?" data-proof="преимущества с живого сайта с фото; подтверждение у заказчика" data-mob="lenta">

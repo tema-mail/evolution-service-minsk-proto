@@ -105,6 +105,9 @@ body.show-seo .w-seo { display: block; }
 .w-form { border: 2px solid var(--ink); padding: 18px; display: grid; gap: 12px; max-width: 520px; }
 .w-field { display: grid; gap: 4px; font-size: 14px; }
 .w-field input, .w-field select { min-height: 44px; border: 1px solid var(--ink); padding: 0 10px; font: inherit; background: #fff; }
+/* длинный вариант в select не распирает форму на телефоне (18.11.2026: вылезало на 8 px при 390) */
+.w-form > *, .w-field { min-width: 0; }
+.w-field input, .w-field select { width: 100%; max-width: 100%; }
 .w-check { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; }
 
 /* Полоса призыва */
@@ -249,7 +252,7 @@ header.w-block > .w-logic { margin: 8px auto; max-width: var(--wrap); }
 </form></div></div>
 </section>
 
-<section class="w-block" data-n="6" data-name="Особенности модели" data-question="Какие проблемы бывают у VIGO?" data-next="Почему сюда, а не к дилеру или в обычный сервис?" data-proof="паспорт модели: устройство, слабые места, отзывы производителя">
+<section class="w-block" data-n="6" data-name="Особенности модели" data-question="Какие проблемы бывают у VIGO?" data-next="Почему сюда, а не к дилеру или в обычный сервис?" data-proof="паспорт модели: устройство, слабые места, отзывы производителя" data-mob="vniz">
   <div class="w-wrap w-stack"><h2 class="w-kicker">Особенности сервиса Dongfeng VIGO</h2><p class="w-title">Что важно знать про Dongfeng VIGO</p><ul><li>Электромобиль, один мотор спереди. Для белорусского рынка заявлено 163 л.с. и 290 Нм</li><li>Батарея 44,94 кВт·ч (младшая, LFP)</li><li>Батарея 51,87 кВт·ч (старшая, LFP, 471 км по CLTC; в белорусских версиях Pro и Max)</li><li>Привод передний</li><li>Приборы 8,8 дюйма, центральный экран 12,8 дюйма. В Беларуси мультимедиа русифицирована, есть Apple CarPlay</li></ul><div class="w-grid" style="--cols:3;--cols-m:1"><article class="w-card"><h3><span class="w-ask">[запросить: неисправность VIGO из практики]</span></h3><p><span class="w-ask">[запросить: признаки и что делали]</span></p></article><article class="w-card"><div class="w-media small" data-alt="ремонт Dongfeng VIGO из практики сервиса">Случай из практики: снятая деталь VIGO или экран ошибки крупно</div><h3>Из нашей практики</h3><p><span class="w-ask">[запросить: что чинили на VIGO в Минске]</span></p></article></div></div>
 </section>
 <section class="w-block" data-n="7" data-name="Почему сюда" data-question="Почему сюда, а не к дилеру или в обычный сервис?" data-next="Вы уже работали с такими?" data-proof="преимущества с живого сайта с фото; подтверждение у заказчика" data-mob="lenta">

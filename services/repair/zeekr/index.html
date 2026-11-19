@@ -105,6 +105,9 @@ body.show-seo .w-seo { display: block; }
 .w-form { border: 2px solid var(--ink); padding: 18px; display: grid; gap: 12px; max-width: 520px; }
 .w-field { display: grid; gap: 4px; font-size: 14px; }
 .w-field input, .w-field select { min-height: 44px; border: 1px solid var(--ink); padding: 0 10px; font: inherit; background: #fff; }
+/* длинный вариант в select не распирает форму на телефоне (18.11.2026: вылезало на 8 px при 390) */
+.w-form > *, .w-field { min-width: 0; }
+.w-field input, .w-field select { width: 100%; max-width: 100%; }
 .w-check { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; }
 
 /* Полоса призыва */
@@ -223,10 +226,10 @@ header.w-block > .w-logic { margin: 8px auto; max-width: var(--wrap); }
     <p class="w-hint">Цену называем до начала работ. Пр-т Машерова, 15/4, Минск · <a href="#">Telegram</a> · <a href="#">Макс</a></p></div>
   <div class="w-media" data-alt="ремонт Zeekr в Минске">Живое фото: ремонт на Zeekr в техцентре, результат крупно</div></div></div>
 </section>
-<section class="w-block" data-n="2" data-name="Модели" data-question="Делаете на моей Zeekr?" data-next="Чем отличается работа на разных Zeekr?" data-proof="модели марки с ценой от">
+<section class="w-block" data-n="2" data-name="Модели" data-question="Делаете на моей Zeekr?" data-next="Чем отличается работа на разных Zeekr?" data-proof="модели марки с ценой от" data-mob="vniz">
   <div class="w-wrap w-stack"><h2>Ремонт Zeekr: цены по моделям</h2><div class="w-table-wrap"><table class="w-table"><tr><th>Модель</th><th>Цена от, BYN</th><th>Время</th></tr><tr><td><a href="/evolution-service-minsk-proto/brands/zeekr/001/">Zeekr 001</a></td><td><span class="w-ask">[запросить: цена]</span></td><td><span class="w-ask">[запросить: время]</span></td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/zeekr/009/">Zeekr 009</a></td><td><span class="w-ask">[запросить: цена]</span></td><td><span class="w-ask">[запросить: время]</span></td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/zeekr/x/">Zeekr X</a></td><td><span class="w-ask">[запросить: цена]</span></td><td><span class="w-ask">[запросить: время]</span></td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/zeekr/007-gt/">Zeekr 007 GT</a></td><td><span class="w-ask">[запросить: цена]</span></td><td><span class="w-ask">[запросить: время]</span></td></tr></table></div></div>
 </section>
-<section class="w-block" data-n="2" data-name="Отличия моделей" data-question="Чем отличается работа на разных Zeekr?" data-next="Что именно получу?" data-proof="паспорта моделей марки">
+<section class="w-block" data-n="2" data-name="Отличия моделей" data-question="Чем отличается работа на разных Zeekr?" data-next="Что именно получу?" data-proof="паспорта моделей марки" data-mob="akkordeon">
   <div class="w-wrap w-stack"><h2>Ремонт Zeekr: чем отличаются модели</h2><div class="w-table-wrap"><table class="w-table"><tr><th>Модель</th><th>Что важно для этой работы</th></tr><tr><td><a href="/evolution-service-minsk-proto/brands/zeekr/001/">Zeekr 001</a></td><td><b>Влага в зарядном порту.</b> После мойки в порт попадает вода, зарядка выдаёт ошибки. Помогает силиконовая накладка на порт; если после просушки ошибки остаются, проверяем порт и контакты.<br><b>Двери и стёкла в мороз.</b> Зимой примерзают двери, безрамочные стёкла плохо опускаются. Помогает низкотемпературная смазка уплотнителей.</td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/zeekr/009/">Zeekr 009</a></td><td><span class="w-ask">[запросить: особенность модели]</span></td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/zeekr/x/">Zeekr X</a></td><td><b>Передний редуктор.</b> Встречаются единичные отказы переднего редуктора. При ранней замене масла, на 3–4 тыс. км, в нём находили стружку. При замене масла проверяем его на стружку, а редуктор – на шум.<br><b>Кнопка открытия багажника.</b> Встречаются отказы кнопки открытия задней двери. Возможная причина – напор воды на мойке; кнопку можно защитить плёнкой.</td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/zeekr/007-gt/">Zeekr 007 GT</a></td><td><b>Отзывная кампания.</b> Китай, старт 24.08.2026: отзыв 92 658 машин Zeekr 007 и Zeekr X выпуска 01.03.2023–21.05.2026 из-за плохо заметной ручки аварийного открытия двери; лечат наклейкой и обновлением ПО стеклоподъёмников. В сообщении названы «некоторые 007» без уточнения, входит ли GT.</td></tr></table></div></div>
 </section>
 

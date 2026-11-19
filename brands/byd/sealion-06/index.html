@@ -105,6 +105,9 @@ body.show-seo .w-seo { display: block; }
 .w-form { border: 2px solid var(--ink); padding: 18px; display: grid; gap: 12px; max-width: 520px; }
 .w-field { display: grid; gap: 4px; font-size: 14px; }
 .w-field input, .w-field select { min-height: 44px; border: 1px solid var(--ink); padding: 0 10px; font: inherit; background: #fff; }
+/* длинный вариант в select не распирает форму на телефоне (18.11.2026: вылезало на 8 px при 390) */
+.w-form > *, .w-field { min-width: 0; }
+.w-field input, .w-field select { width: 100%; max-width: 100%; }
 .w-check { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; }
 
 /* Полоса призыва */
@@ -249,7 +252,7 @@ header.w-block > .w-logic { margin: 8px auto; max-width: var(--wrap); }
 </form></div></div>
 </section>
 
-<section class="w-block" data-n="6" data-name="Особенности модели" data-question="Какие проблемы бывают у Sealion 06?" data-next="Почему сюда, а не к дилеру или в обычный сервис?" data-proof="паспорт модели: устройство, слабые места, отзывы производителя">
+<section class="w-block" data-n="6" data-name="Особенности модели" data-question="Какие проблемы бывают у Sealion 06?" data-next="Почему сюда, а не к дилеру или в обычный сервис?" data-proof="паспорт модели: устройство, слабые места, отзывы производителя" data-mob="vniz">
   <div class="w-wrap w-stack"><h2 class="w-kicker">Особенности сервиса BYD Sealion 06</h2><p class="w-title">Что важно знать про BYD Sealion 06</p><ul><li>Электромобиль на e-Platform 3.0 Evo: один мотор 170 или 180 кВт, либо два мотора (110 кВт спереди и 180 кВт сзади)</li><li>Батарея 65,28 кВт·ч (Sealion 06 EV 2025, младшая батарея)</li><li>Батарея 78,72 кВт·ч (Sealion 06 EV 2025, старшая батарея)</li><li>Привод: один мотор или два мотора (110 кВт спереди и 180 кВт сзади)</li></ul><div class="w-grid" style="--cols:3;--cols-m:1"><article class="w-card"><h3><span class="w-ask">[запросить: неисправность Sealion 06 из практики]</span></h3><p><span class="w-ask">[запросить: признаки и что делали]</span></p></article><article class="w-card"><div class="w-media small" data-alt="ремонт BYD Sealion 06 из практики сервиса">Случай из практики: снятая деталь Sealion 06 или экран ошибки крупно</div><h3>Из нашей практики</h3><p><span class="w-ask">[запросить: что чинили на Sealion 06 в Минске]</span></p></article></div></div>
 </section>
 <section class="w-block" data-n="7" data-name="Почему сюда" data-question="Почему сюда, а не к дилеру или в обычный сервис?" data-next="Вы уже работали с такими?" data-proof="преимущества с живого сайта с фото; подтверждение у заказчика" data-mob="lenta">

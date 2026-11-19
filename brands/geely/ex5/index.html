@@ -105,6 +105,9 @@ body.show-seo .w-seo { display: block; }
 .w-form { border: 2px solid var(--ink); padding: 18px; display: grid; gap: 12px; max-width: 520px; }
 .w-field { display: grid; gap: 4px; font-size: 14px; }
 .w-field input, .w-field select { min-height: 44px; border: 1px solid var(--ink); padding: 0 10px; font: inherit; background: #fff; }
+/* длинный вариант в select не распирает форму на телефоне (18.11.2026: вылезало на 8 px при 390) */
+.w-form > *, .w-field { min-width: 0; }
+.w-field input, .w-field select { width: 100%; max-width: 100%; }
 .w-check { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; }
 
 /* Полоса призыва */
@@ -251,7 +254,7 @@ header.w-block > .w-logic { margin: 8px auto; max-width: var(--wrap); }
 <section class="w-block" id="reglament" data-n="5" data-name="Регламент ТО" data-question="Когда мне на ТО и что будут менять?" data-next="Какие проблемы бывают у EX5?" data-proof="регламент производителя из паспорта модели">
   <div class="w-wrap w-stack"><h2 class="w-kicker">Плановое обслуживание и техобслуживание Geely EX5</h2><p class="w-title">Какое ТО нужно на вашем пробеге</p><p class="w-lead">Ориентир по открытым данным производителя. Точный регламент – по сервисной книжке вашей машины, список работ на ваш пробег назовём по VIN.</p><div class="w-table-wrap"><table class="w-table"><tr><th>Пробег или срок</th><th>Что меняем и проверяем</th></tr><tr><td>20 000 км или 1 год</td><td>плановое ТО</td></tr></table></div><div class="w-actions"><a class="w-btn ghost" href="#zapis">Узнать, что менять на моём пробеге</a></div></div>
 </section>
-<section class="w-block" data-n="6" data-name="Особенности модели" data-question="Какие проблемы бывают у EX5?" data-next="Почему сюда, а не к дилеру или в обычный сервис?" data-proof="паспорт модели: устройство, слабые места, отзывы производителя">
+<section class="w-block" data-n="6" data-name="Особенности модели" data-question="Какие проблемы бывают у EX5?" data-next="Почему сюда, а не к дилеру или в обычный сервис?" data-proof="паспорт модели: устройство, слабые места, отзывы производителя" data-mob="vniz">
   <div class="w-wrap w-stack"><h2 class="w-kicker">Особенности сервиса Geely EX5</h2><p class="w-title">Что важно знать про Geely EX5</p><ul><li>Электромобиль на платформе GEA, один мотор спереди 160 кВт (218 л.с.), 320 Нм; с 2026 есть версия с задним мотором 245 кВт</li><li>Батарея 49,52 кВт·ч (младшие версии, LFP Aegis Short Blade, 440 км CLTC)</li><li>Батарея 60,22 кВт·ч (старшие версии, LFP Aegis Short Blade, 530 км CLTC; зарядка AC 11 кВт, DC до 100 кВт (австралийская версия))</li><li>Батарея 68,39 кВт·ч (увеличенная батарея, добавлена позже, до 610 км CLTC)</li><li>Передний, один мотор и один редуктор; с 2026 есть заднеприводная версия</li><li>Flyme Auto и аудио Flyme Sound (разработка с Meizu), чип Dragon Eagle-1 (7 нм)</li></ul><div class="w-grid" style="--cols:3;--cols-m:1"><article class="w-card"><h3><span class="w-ask">[запросить: неисправность EX5 из практики]</span></h3><p><span class="w-ask">[запросить: признаки и что делали]</span></p></article><article class="w-card"><div class="w-media small" data-alt="ремонт Geely EX5 из практики сервиса">Случай из практики: снятая деталь EX5 или экран ошибки крупно</div><h3>Из нашей практики</h3><p><span class="w-ask">[запросить: что чинили на EX5 в Минске]</span></p></article></div></div>
 </section>
 <section class="w-block" data-n="7" data-name="Почему сюда" data-question="Почему сюда, а не к дилеру или в обычный сервис?" data-next="Вы уже работали с такими?" data-proof="преимущества с живого сайта с фото; подтверждение у заказчика" data-mob="lenta">

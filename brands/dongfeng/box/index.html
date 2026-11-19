@@ -105,6 +105,9 @@ body.show-seo .w-seo { display: block; }
 .w-form { border: 2px solid var(--ink); padding: 18px; display: grid; gap: 12px; max-width: 520px; }
 .w-field { display: grid; gap: 4px; font-size: 14px; }
 .w-field input, .w-field select { min-height: 44px; border: 1px solid var(--ink); padding: 0 10px; font: inherit; background: #fff; }
+/* длинный вариант в select не распирает форму на телефоне (18.11.2026: вылезало на 8 px при 390) */
+.w-form > *, .w-field { min-width: 0; }
+.w-field input, .w-field select { width: 100%; max-width: 100%; }
 .w-check { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; }
 
 /* Полоса призыва */
@@ -249,7 +252,7 @@ header.w-block > .w-logic { margin: 8px auto; max-width: var(--wrap); }
 </form></div></div>
 </section>
 
-<section class="w-block" data-n="6" data-name="Особенности модели" data-question="Какие проблемы бывают у BOX?" data-next="Почему сюда, а не к дилеру или в обычный сервис?" data-proof="паспорт модели: устройство, слабые места, отзывы производителя">
+<section class="w-block" data-n="6" data-name="Особенности модели" data-question="Какие проблемы бывают у BOX?" data-next="Почему сюда, а не к дилеру или в обычный сервис?" data-proof="паспорт модели: устройство, слабые места, отзывы производителя" data-mob="vniz">
   <div class="w-wrap w-stack"><h2 class="w-kicker">Особенности сервиса Dongfeng BOX</h2><p class="w-title">Что важно знать про Dongfeng BOX</p><ul><li>Электромобиль, один мотор спереди: 70 кВт (95 л.с.), 160 Нм, максимум 140 км/ч</li><li>Батарея 31,45 кВт·ч (E2, LFP; 330 км по CLTC, 230 км по WLTP)</li><li>Батарея 42,3 кВт·ч (E3, LFP; 430 км по CLTC, 310 км по WLTP)</li><li>Привод передний</li><li>Приборы 5 дюймов, центральный экран 12,8 дюйма, голосовое управление, обновления по воздуху</li></ul><div class="w-grid" style="--cols:3;--cols-m:1"><article class="w-card"><h3><span class="w-ask">[запросить: неисправность BOX из практики]</span></h3><p><span class="w-ask">[запросить: признаки и что делали]</span></p></article><article class="w-card"><div class="w-media small" data-alt="ремонт Dongfeng BOX из практики сервиса">Случай из практики: снятая деталь BOX или экран ошибки крупно</div><h3>Из нашей практики</h3><p><span class="w-ask">[запросить: что чинили на BOX в Минске]</span></p></article></div></div>
 </section>
 <section class="w-block" data-n="7" data-name="Почему сюда" data-question="Почему сюда, а не к дилеру или в обычный сервис?" data-next="Вы уже работали с такими?" data-proof="преимущества с живого сайта с фото; подтверждение у заказчика" data-mob="lenta">

@@ -105,6 +105,9 @@ body.show-seo .w-seo { display: block; }
 .w-form { border: 2px solid var(--ink); padding: 18px; display: grid; gap: 12px; max-width: 520px; }
 .w-field { display: grid; gap: 4px; font-size: 14px; }
 .w-field input, .w-field select { min-height: 44px; border: 1px solid var(--ink); padding: 0 10px; font: inherit; background: #fff; }
+/* длинный вариант в select не распирает форму на телефоне (18.11.2026: вылезало на 8 px при 390) */
+.w-form > *, .w-field { min-width: 0; }
+.w-field input, .w-field select { width: 100%; max-width: 100%; }
 .w-check { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; }
 
 /* Полоса призыва */
@@ -223,10 +226,10 @@ header.w-block > .w-logic { margin: 8px auto; max-width: var(--wrap); }
     <p class="w-hint">Цену называем до начала работ. Пр-т Машерова, 15/4, Минск · <a href="#">Telegram</a> · <a href="#">Макс</a></p></div>
   <div class="w-media" data-alt="замена масла Geely в Минске">Живое фото: замена масла на Geely в техцентре, результат крупно</div></div></div>
 </section>
-<section class="w-block" data-n="2" data-name="Модели" data-question="Делаете на моей Geely?" data-next="Чем отличается работа на разных Geely?" data-proof="модели марки с ценой от">
+<section class="w-block" data-n="2" data-name="Модели" data-question="Делаете на моей Geely?" data-next="Чем отличается работа на разных Geely?" data-proof="модели марки с ценой от" data-mob="vniz">
   <div class="w-wrap w-stack"><h2>Замена масла Geely: цены по моделям</h2><div class="w-table-wrap"><table class="w-table"><tr><th>Модель</th><th>Цена от, BYN</th><th>Время</th></tr><tr><td><a href="/evolution-service-minsk-proto/services/oil-change/geely/monjaro/">Geely Monjaro</a></td><td><span class="w-ask">[запросить: цена]</span></td><td><span class="w-ask">[запросить: время]</span></td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/geely/atlas-pro/">Geely Atlas Pro</a></td><td><span class="w-ask">[запросить: цена]</span></td><td><span class="w-ask">[запросить: время]</span></td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/geely/galaxy-starship-7/">Geely Galaxy Starship 7</a></td><td><span class="w-ask">[запросить: цена]</span></td><td><span class="w-ask">[запросить: время]</span></td></tr></table></div></div>
 </section>
-<section class="w-block" data-n="2" data-name="Отличия моделей" data-question="Чем отличается работа на разных Geely?" data-next="Мне это нужно сейчас?" data-proof="паспорта моделей марки">
+<section class="w-block" data-n="2" data-name="Отличия моделей" data-question="Чем отличается работа на разных Geely?" data-next="Мне это нужно сейчас?" data-proof="паспорта моделей марки" data-mob="vniz">
   <div class="w-wrap w-stack"><h2>Замена масла Geely: чем отличаются модели</h2><div class="w-table-wrap"><table class="w-table"><tr><th>Модель</th><th>Что важно для этой работы</th></tr><tr><td><a href="/evolution-service-minsk-proto/services/oil-change/geely/monjaro/">Geely Monjaro</a></td><td><span class="w-ask">[запросить: особенность модели]</span></td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/geely/atlas-pro/">Geely Atlas Pro</a></td><td>10 000 км или 1 год: масло двигателя и масляный фильтр, проверка электроники<br>20 000 км или 2 года: воздушный фильтр, салонный фильтр, диагностика ходовой</td></tr><tr><td><a href="/evolution-service-minsk-proto/brands/geely/galaxy-starship-7/">Geely Galaxy Starship 7</a></td><td>15 000 км или 1 год: плановое ТО</td></tr></table></div></div>
 </section>
 <section class="w-block" data-n="2б" data-name="Когда нужна" data-question="Мне это нужно сейчас?" data-next="Что именно получу?" data-proof="паспорт работы: признаки">

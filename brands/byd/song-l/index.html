@@ -105,6 +105,9 @@ body.show-seo .w-seo { display: block; }
 .w-form { border: 2px solid var(--ink); padding: 18px; display: grid; gap: 12px; max-width: 520px; }
 .w-field { display: grid; gap: 4px; font-size: 14px; }
 .w-field input, .w-field select { min-height: 44px; border: 1px solid var(--ink); padding: 0 10px; font: inherit; background: #fff; }
+/* длинный вариант в select не распирает форму на телефоне (18.11.2026: вылезало на 8 px при 390) */
+.w-form > *, .w-field { min-width: 0; }
+.w-field input, .w-field select { width: 100%; max-width: 100%; }
 .w-check { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; }
 
 /* Полоса призыва */
@@ -249,7 +252,7 @@ header.w-block > .w-logic { margin: 8px auto; max-width: var(--wrap); }
 </form></div></div>
 </section>
 
-<section class="w-block" data-n="6" data-name="Особенности модели" data-question="Какие проблемы бывают у Song L?" data-next="Почему сюда, а не к дилеру или в обычный сервис?" data-proof="паспорт модели: устройство, слабые места, отзывы производителя">
+<section class="w-block" data-n="6" data-name="Особенности модели" data-question="Какие проблемы бывают у Song L?" data-next="Почему сюда, а не к дилеру или в обычный сервис?" data-proof="паспорт модели: устройство, слабые места, отзывы производителя" data-mob="vniz">
   <div class="w-wrap w-stack"><h2 class="w-kicker">Особенности сервиса BYD Song L</h2><p class="w-title">Что важно знать про BYD Song L</p><ul><li>Song L EV – электромобиль на e-Platform 3.0, один мотор 150 или 230 кВт либо два мотора 380 кВт. Song L DM-i – гибрид с подзарядкой: мотор 1.5 л 74 кВт и электромотор 160 кВт (система DM 5-го поколения)</li><li>Батарея 71,8 кВт·ч (Song L EV, задний привод, 550 км CLTC)</li><li>Батарея 87,04 кВт·ч (Song L EV, 662 км (задний привод) или 602 км (полный привод) CLTC)</li><li>Батарея 18,316 кВт·ч (Song L DM-i, Blade LFP)</li><li>Батарея 26,593 кВт·ч (Song L DM-i, Blade LFP)</li><li>Привод: Song L EV – задний или полный (два мотора: 150 кВт спереди и 230 кВт сзади)</li></ul><div class="w-grid" style="--cols:3;--cols-m:1"><article class="w-card"><h3><span class="w-ask">[запросить: неисправность Song L из практики]</span></h3><p><span class="w-ask">[запросить: признаки и что делали]</span></p></article><article class="w-card"><div class="w-media small" data-alt="ремонт BYD Song L из практики сервиса">Случай из практики: снятая деталь Song L или экран ошибки крупно</div><h3>Из нашей практики</h3><p><span class="w-ask">[запросить: что чинили на Song L в Минске]</span></p></article></div></div>
 </section>
 <section class="w-block" data-n="7" data-name="Почему сюда" data-question="Почему сюда, а не к дилеру или в обычный сервис?" data-next="Вы уже работали с такими?" data-proof="преимущества с живого сайта с фото; подтверждение у заказчика" data-mob="lenta">
